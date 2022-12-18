@@ -1,0 +1,21 @@
+{% extends 'fitness/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="header_bottom_halls">
+            <div class="header_bottom_halls__top">
+                <h2>Залы</h2>  
+
+            </div>   
+            <div class="header_bottom_halls__bottom">
+                <ul class="breadcrumb_halls">
+                    <li class="breadcrumb_halls__item"><a href="index.html">Главная</a></li>
+                    <li class="breadcrumb_halls__item">Залы</li>
+                
+                </ul>
+
+            </div>     
+        </div>
+    </div>
+    {% include 'fitness/halls_temp.html' %}
+{% endblock %}

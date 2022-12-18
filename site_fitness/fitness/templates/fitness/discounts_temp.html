@@ -1,0 +1,31 @@
+{% load static %}
+{% block discounts %}
+<div class="container">
+    <section class="sales">
+    
+        <h2>Акции</h2>
+        <section class="sales_items">
+            {% for i in discount %}
+            <article class="sale">
+                <div class="sale__content">
+                    <div class="sale__duration">БЕССРОЧНАЯ АКЦИЯ</div>
+                    <div class="sale__title">{{ i.name}}</div>
+                    <div class="sale__subtitle">{{ i.description}}</div>
+                    <div class="sale__button">
+                        
+                        <a href="login.html" class="sale__button button">КУПИТЬ АБОНЕМЕНТ<span class="material-symbols-outlined">arrow_circle_right</span></a>
+                    </div>
+                    <hr class="sale__line">
+                </div>
+
+            </article>
+            {% endfor %}
+            
+        </section>
+        <div class="all_sales__button">
+            <a href="sales.html" class="all_sales__button button">Все акции</a>
+        </div>
+    </section>
+</div>
+
+{% endblock %}

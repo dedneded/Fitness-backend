@@ -1,0 +1,35 @@
+{% extends 'fitness/base.html' %}
+{% load static %}
+{% block info %}
+<div class="header_bottom">
+    <div class="header_bottom__content">
+        <div class="header_bottom__title">Фитнес-клуб</div>
+        <div class="header_bottom__subtitle"><span>Территория комфорта и премиального фитнеса для успешных людей</span><span class="mobile">с дизайнерским интерьером, роскошным рестораном и СПА-салоном</span>.</div>
+        <a href="#1" class="header_bottom button">Заказать звонок</a>
+    </div> 
+</div>
+<section class="galery">
+    <ol class="galery_list">
+        {% for i in service|slice:":8" %}
+            <li class="galery-item"><img class="galery-image" src="{{ i.photos.first.photo_path.url }}" alt=""/></li>
+        {% endfor %}
+    </ol>
+    {% for i in client %}
+        <p>{{ i.name }}</p>
+    {% endfor %}
+</section>
+{% include 'fitness/halls_temp.html' %}
+{% include 'fitness/trainers_temp.html' %}
+{% include 'fitness/discounts_temp.html' %}
+{% include 'fitness/subscriptions_temp.html' %}
+{% include 'fitness/slider_temp.html' %}
+<div class="container">
+    <div class="map">
+        <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A8176a055051c7359e41270d06f2590a111cd111eced43c7253c34da7705e657b&amp;source=constructor"  height="600" frameborder="0"></iframe>
+    </div>
+</div>
+{% include 'fitness/form_temp.html' %}
+
+{% endblock %}
+
+

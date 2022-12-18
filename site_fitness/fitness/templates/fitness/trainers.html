@@ -1,0 +1,45 @@
+{% extends 'fitness/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="header_bottom_trainers">
+        <div class="header_bottom_trainers__top">
+            <h2>Тренеры</h2>  
+             
+        </div>   
+        <div class="header_bottom_trainers__bottom">
+            <ul class="breadcrumb_trainers">
+                <li class="breadcrumb_trainers__item"><a href="#">Главная</a></li>
+                <li class="breadcrumb_trainers__item">Тренеры</li>
+               
+            </ul>
+            
+        </div>     
+    </div>
+</div>
+<div class="container">
+           
+    <div class="search_item">
+        <form>
+            <input class="search_item__value" type="text" placeholder="Введите фио тренера...">
+            
+            <button type="submit">
+                <span class="material-symbols-outlined">search</span>
+            </button>
+        </form>
+        <select class="combo">
+
+            <option value="" disabled selected>Направление</option>
+            <option value="gym">Тренажерный зал</option>
+            <option value="martial_arts">Зал единоборств</option>
+            <option value="cardiozone">Кардиозона</option>
+            <option value="balance_studio">Студия баланса</option>
+            <option value="stretching_zone">Зона стретчинга</option>
+            <option value="water_complex">Водный комплекс</option>
+
+           
+        </select>
+    
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'fitness/base.html' %}
+{% load static %}
+
+    {% block content %}
+        <div class="container">
+            <div class="header_bottom_sub">
+                <div class="header_bottom_sub__top">
+                    <h2>Абонементы</h2>
+                
+                </div>
+                <div class="header_bottom_sub__bottom">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb__item"><a href="#">Главная</a></li>
+                        <li class="breadcrumb__item">Абонементы</li>
+                    
+                    </ul>
+                
+                </div>
+            </div>
+        </div>
+       
+        <div class="container">
+            <section class="another_subscriptions">
+                <h2 class="another_subscriptions__title">Абонементы на отдельные направления можно найти на страницах:</h2>
+                {% include 'fitness/halls_temp.html' %}
+                <div class="halls__button">
+                    <a href="halls.html" class="halls__button button">Все залы</a>
+                </div>
+                <hr>
+            </section>
+        </div>
+        {% include 'fitness/subscriptions_temp.html' %}
+{% endblock %}
+

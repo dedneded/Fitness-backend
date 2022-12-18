@@ -1,0 +1,17 @@
+{% block reviews %}
+<div class="container_slider">
+    <div class="slider">
+        {% for i in feedback %}
+        <div class="slider__item">
+            <img data-lazy="{{ i.photo_path.url }}" >
+        </div>
+        {% endfor %}
+    </div>
+    <div class="all_reviews__button">
+        <a href="#" class="all_reviews__button button">Все отзывы</a>
+    </div>
+</div>
+
+{% endblock %}
+
+

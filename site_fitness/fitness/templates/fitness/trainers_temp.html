@@ -1,0 +1,26 @@
+{% load static %}
+{% block trainers %}
+
+<div class="container">
+    <section class="trainers">
+        <h2>Наши тренеры</h2>
+        <section class="trainers_items"> 
+            {% for i in trainer %}
+                <article onclick="location.href='trainer.html';" class="trainer">
+                    <img  src="{{ i.photo_path.url }}" alt=""  max-width: 100%; height="245";/>
+                    <div class="trainer__content">
+                        <div class="trainer__title">Тренер по самбо</div>
+                        <div class="trainer__subtitle">{{ i.name }}</div>
+                        <a href="trainer.html" class="trainer__content button">Подробнее</a>
+
+                    </div>
+                </article>
+            {% endfor %}
+        </section>
+        <div class="trainers__button">
+            <a href="trainers.html" class="trainers__button button">Все тренеры</a>
+        </div>
+    </section>
+</div>
+
+{% endblock %}
