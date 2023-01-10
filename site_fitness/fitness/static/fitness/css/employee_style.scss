@@ -1,0 +1,64 @@
+.link_hover{
+    transition: all 0.3s ease;
+    &:hover{
+        color: #FFC107;
+    }
+    &:not(:hover) {          
+        transition: all 0.5s ease;
+    }
+
+}
+.title{
+    font-weight: 700;
+}
+.active_page{
+    text-decoration: underline;
+}
+html, body{
+    background: #eee;
+    height: 100%;
+}
+.wrapper{
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+main{
+    flex: 1 1 auto;
+}
+.btn-warning{
+    transition: all 0.3s ease;
+    &:hover{
+        background: none;
+        
+    }
+    &:not(:hover) {          
+        transition: all 0.5s ease;
+    }
+    
+}
+.img-fluid{
+    width: 207px;
+    height: 207.5px;
+}
+.footer_exit{
+    color: #FFC107;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    &:hover{
+        color: white;
+    }
+    &:not(:hover) {          
+        transition: all 0.5s ease;
+    }
+}
+.footer_menu{
+    color: white;
+    transition: all 0.3s ease;
+    &:hover{
+        color:#FFC107; 
+    }
+    &:not(:hover) {          
+        transition: all 0.5s ease;
+    }
+}

@@ -1,0 +1,183 @@
+@charset "UTF-8";
+/*Обнуление*/
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+:focus, :active {
+  outline: none;
+}
+
+a:focus, a:active {
+  outline: none;
+}
+
+nav, footer, header, aside {
+  display: block;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  font-size: 14px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+input, button, textarea {
+  font-family: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a, a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/*--------------------*/
+body {
+  background: #030303;
+  font-size: 16px;
+  font-family: "Montserrat";
+  font-style: "normal";
+}
+
+.button {
+  border: 1px solid #D0A452;
+  border-radius: 8px;
+  font-size: 1.1em;
+  line-height: 152%;
+  color: #FFFFFF;
+  transition: all 0.3s ease;
+}
+
+h2 {
+  color: #FFFFFF;
+  font-size: 2.4em;
+  text-align: center;
+  font-weight: 700;
+}
+
+.container {
+  max-width: 1200px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.masters .masters_items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.masters .button:hover, .masters .masters_items .master .master__content .button:hover {
+  background: #D0A452;
+  color: #000000;
+}
+
+.masters h2 {
+  margin-top: 1em;
+  margin-bottom: 1.3em;
+}
+.masters .masters_items {
+  margin: 2em auto;
+  flex-wrap: wrap;
+  max-width: 1300px;
+}
+.masters .masters_items .master {
+  margin: 1em 1em;
+}
+.masters .masters_items .master img {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  cursor: pointer;
+}
+.masters .masters_items .master img:hover {
+  transition: all 0.5s ease;
+  opacity: 0.5;
+}
+.masters .masters_items .master img:not(:hover) {
+  transition: all 0.9s ease;
+}
+.masters .masters_items .master .master__content {
+  border: 1px solid rgb(255, 255, 255);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding-left: 30px;
+  min-height: 250px;
+}
+.masters .masters_items .master .master__content .master__title {
+  color: #D0A452;
+  font-size: 1.5em;
+  line-height: 143%;
+  font-weight: 700;
+  line-height: 143%;
+  margin-top: 20px;
+}
+.masters .masters_items .master .master__content .master__subtitle {
+  font-size: 1em;
+  line-height: 150%;
+  color: #FFFFFF;
+  margin-top: 5px;
+  margin-bottom: 4em;
+}
+.masters .masters_items .master .master__content .button {
+  background: none;
+  transition: all 0.5s ease;
+  padding: 30px 50px;
+  border: 1px solid #D0A452;
+}
+.masters .masters_items .master .master__content .button:not(:hover) {
+  transition: all 0.9s ease;
+}
+.masters .masters__button {
+  text-align: center;
+  margin-top: -1em;
+  margin-bottom: 0.5em;
+}
+.masters .button {
+  padding: 10px 30px;
+}
+.masters .button:not(:hover) {
+  transition: all 0.9s ease;
+}/*# sourceMappingURL=masters.css.map */

@@ -1,0 +1,94 @@
+@import "../core/_core";
+.services{
+    display: flex;
+    flex-direction: column;
+    h2{
+        margin-top: 0.5em;
+        margin-bottom: 1em;
+        
+        
+        
+    }
+    .services__items{
+        @extend %flex_style;
+        flex-wrap: wrap;
+        max-width: 1300px;
+        
+       
+        .service{
+            margin: 1.5em 1em;
+            img{
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                display: block;
+            }
+            .service__content{
+                border: 1px solid rgb(255, 255, 255);
+                border-bottom-left-radius: 10px;
+                border-bottom-right-radius: 10px;
+                height: 300px;
+                .service__title{
+                    font-size: 1.6em;
+                    line-height: 143%;
+                    padding: 20px 0px 0px 30px;
+                    font-weight: 700;
+                    color: $clr_gold;
+                }
+                .service__subtitle{
+                    font-size: 1em;
+                    line-height: 150%;
+                    color: $clr_white;
+                    width: 250px;
+                    height: 50px;
+                    padding: 10px 0px 0px 30px;
+                    margin-bottom: 80px;
+                    
+                }
+                .service__price{
+                    color: $clr_gold;
+                    font-size: 2em;
+                    margin-top: -50px;
+                    padding-left: 30px;
+                    margin-bottom: 50px;
+                    
+                }
+                .button{
+                    background: none;
+                    padding: 30px 50px;
+                    margin-left: 30px;
+                    border: 1px solid $clr_gold;
+                    &:hover{
+                        @extend %button_hover;
+                    }
+                    &:not(:hover) {
+                   
+                        transition: all 0.9s ease;
+                        
+                        
+                    }
+                    
+                }
+            }
+    
+        }
+    }
+    .services__button{
+        text-align: center;
+        display: none;
+    }
+    .button{
+        
+        padding: 10px 30px;
+        margin-bottom: 1em;
+        &:hover{
+            @extend %button_hover;
+        }
+        &:not(:hover) {
+                   
+            transition: all 0.9s ease;
+            
+            
+        }
+    }
+    
+}

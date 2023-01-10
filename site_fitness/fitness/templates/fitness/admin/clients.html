@@ -1,0 +1,139 @@
+{% extends 'fitness/admin/base.html' %}
+{% load static %}
+{% block content %}
+    {% block breadcrumb %}
+        <div class="container-lg mt-4 pb-4">
+            <nav aria-label="breadcrumb" class="bg-light shadow rounded-3 py-3">
+                <div class="row px-3 ">
+                    <ol class="breadcrumb  col-xl-6 col-sm-11  px-3 px-sm-2 my-auto">
+                        <li class="breadcrumb-item">Кабинет администратора</li>
+                        <li class="breadcrumb-item">{{title}}</li>
+                    </ol>
+                    <a class = " text-end col-xl-6 col-sm-1 " href="{% url 'admin_client_create' %}">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                         </svg>
+                    </a>
+                </div>
+            </nav>    
+
+        </div> 
+    {% endblock %}
+    {% block filter %}
+        <div class="container-lg">
+            <form action="" method="GET" class="bg-light shadow p-3 px-4 rounded-3">
+                {% csrf_token %}
+                 <div class="row">
+                    <div class="form-group col-4">
+                       <label for="id_client">Id</label>
+                        {{form.item_id}}
+                        <div class="form-group mt-2">
+                            <label for="phone">Телефон</label>
+                              {{form.phone}}
+                        </div>
+                    </div>
+                    <div class="form-group col-8 ">
+                        <div class="form-group ">
+                            <label for="name">ФИО</label>
+                            {{form.name}}
+                        </div>
+                        <div class="form-group mt-2">
+                            <label for="mail">Email</label>
+                             {{form.mail}}
+                        </div>
+                    </div>
+
+                </div>
+                {% if field.errors%}
+                    {% for error in field.errors %}
+                        <div class="alert alert-danger">
+                            {{error}}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <div class="d-flex flex-row-reverse mt-4">
+
+                    <div class="form-group  ">
+                        <button type="submit" class="btn btn-warning custom_butt ">Применить</button>
+
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-danger custom_butt mx-3">Сбросить</button>
+
+
+                    </div>   
+                </div>
+            </form>
+
+
+        </div> 
+     
+    {% endblock %}
+    {% block table %}
+        <div class="container-lg ">
+            <form class="bg-light shadow p-3 px-4 rounded-3 mt-4 overflow-auto">
+                <table class="table table-hover mt-1 ">
+                    <thead>
+                        <tr>
+                            
+                          <th scope="col"><a href="{% if request.get_full_path == '/admin_clients/' %}/admin_clients/?order_by=-id
+                            {% elif request.get_full_path == '/admin_clients/?order_by=-id' %}/admin_clients/?order_by=id
+                            {% elif request.get_full_path == '/admin_clients/?order_by=id' %}/admin_clients/?order_by=-id
+                            {% else %}/admin_clients/?order_by=-id{% endif %}"
+
+                            class="text-decoration-none text-warning link_hover"><span class="fw-bold">&#8645;&nbsp;Id</span> </a></th>
+                          <th scope="col"><a href="{% if request.get_full_path == '/admin_clients/' %}/admin_clients/?order_by=-name
+                            {% elif request.get_full_path == '/admin_clients/?order_by=-name' %}/admin_clients/?order_by=name
+                            {% elif request.get_full_path == '/admin_clients/?order_by=name' %}/admin_clients/?order_by=-name
+                            {% else %}/admin_clients/?order_by=-name{% endif %}"
+                            class=" text-decoration-none text-black link_hover "><span class="fw-bold">&#8645;</span> ФИО</a></th>
+                          <th scope="col"><a href="" class=" text-decoration-none text-black link_hover "><span class="fw-bold"></span> Телефон</a></th>
+                          <th scope="col">Почта</th>
+                          <th scope="col"><a href="{% if request.get_full_path == '/admin_clients/' %}/admin_clients/?order_by=-date_of_birth
+                            {% elif request.get_full_path == '/admin_clients/?order_by=-date_of_birth' %}/admin_clients/?order_by=date_of_birth
+                            {% elif request.get_full_path == '/admin_clients/?order_by=date_of_birth' %}/admin_clients/?order_by=-date_of_birth
+                            {% else %}/admin_clients/?order_by=-date_of_birth{% endif %}" class=" text-decoration-none text-black link_hover "><span class="fw-bold">&#8645;&nbsp;Дата&nbsp;рождения</span></a></th>
+                        
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in client %}
+                        <tr>
+                          <th scope="row">{{i.pk}}</th>
+                          <td><a class="text-decoration-none " href="admin_client_see.html">{{i.name}}</a></td>
+                          <td><a class="text-decoration-none text-black" href="admin_client_see.html">{{i.phone}}</a></td>
+                          <td><a class="text-decoration-none text-black" href="admin_client_see.html">{{i.mail}}</a></td>
+                          <td><a class="text-decoration-none text-black" href="admin_client_see.html">{{i.date_of_birth}}</a></td>
+                        
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+               
+                <nav aria-label="page_navigation mt-5">
+                    <ul class="pagination justify-content-center ">
+                        {% for p in page_obj.paginator.page_range %}
+                        {% if page_obj.number == p%}
+                        <li class="page-item active"><a class="page-link" href="#">{{ p }}</a></li>
+                        {% else %}
+                            <li class="page-item ">
+                                 {% if sort == '' %}
+                                    <a class="page-link" href="?page">{{ p }}</a>
+
+                                 {% else %}
+                                    <a class="page-link" href="?page={{ p }}&order_by={{sort}}">{{ p }}</a>
+                                 {% endif %}
+
+                            </li>
+                            
+                        {% endif %}
+                        {% endfor %}
+                        
+                    </ul>
+                </nav>
+            </form>
+        </div>
+    {% endblock %}
+{% endblock %}

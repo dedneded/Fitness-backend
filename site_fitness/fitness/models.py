@@ -88,6 +88,7 @@ class Client(models.Model):
     mail = models.CharField(max_length=255, verbose_name='Почта')
     date_of_birth = models.DateTimeField(verbose_name='Дата рождения')
     photo_path = models.ImageField(upload_to="photos/", null=True, verbose_name='Фото', blank=True)
+    comment = models.TextField(null=True, blank=True)
     subscriptions = models.ManyToManyField('Subscription', through='ClientSubscription', null=True, blank=True)
     groups = models.ManyToManyField('Group', null=True, blank=True)
     def __str__(self):

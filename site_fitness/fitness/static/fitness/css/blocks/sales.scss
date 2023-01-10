@@ -1,0 +1,77 @@
+.sales{
+    h2{
+        margin-top: 1.5em;
+    }
+    .sales_items{
+        margin: 2em 2em;
+        .sale{
+            margin: 1em 1em;
+            margin: 0 auto;
+            max-width: 1150px;
+            .sale__content{
+                
+                padding-top: 1.5em;
+                
+                .sale__duration{
+                    color: $clr_white;
+                    opacity: 0.6;
+                }
+                .sale__title{
+                    color: $clr_gold;
+                    font-size: 2.5em;
+                    line-height: 143%;
+                    font-weight: 700;
+                    line-height: 143%;
+                    
+                }
+                .sale__subtitle{
+                    font-size: 1.5em;
+                    line-height: 150%;
+                    color: $clr_white;
+                }
+                hr{
+                    max-width: 1150px;
+                    background-color: $clr_white;
+                    height: 2px;
+                    border-radius: 10px;
+                    margin-top: 30px;
+                }
+                .sale__button{
+                    display: flex;
+                    column-gap: 0.5rem;
+                    .button{
+                        color: $clr_gold ;
+                        font-size: 1.4em;
+                        padding-top: 30px;
+                        background: none;
+                        border: none;
+                        text-shadow: 1px 1px 1px $clr_white;
+                        
+                        span{
+                            font-size: 1.5em;
+                            
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
+    .all_sales__button{
+        
+        text-align: center;
+        
+        margin-bottom: 0.5em;
+        
+        .button{
+            padding: 10px 30px;
+            
+            &:hover{
+                @extend %button_hover;
+            }
+            &:not(:hover) {
+                transition: all 0.9s ease;
+            }
+        }
+    }
+}

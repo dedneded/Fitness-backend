@@ -1,0 +1,413 @@
+@import "../core/_core";
+.header_bottom_martial_arts{
+   
+    
+    .header_bottom_martial_arts__top{
+        margin-top: 5em;
+        @extend %flex_style;
+        column-gap: 50.4rem;
+        h2{
+            font-size: 1.5em;
+            color: $clr_gold;
+        }
+        .favourites{
+            @extend %flex_style;
+            column-gap: 0.5rem;
+            padding-left: 25px;
+            color: $clr_white;
+            span{
+                
+                font-size: 1em;
+                
+            }
+            svg{
+                color: $clr_gold;
+                
+            }
+            &:hover{
+                
+                svg{
+                    fill: $clr_gold ;
+                    
+                }
+                
+            }
+            &:not(:hover) {
+                   
+                transition: all 0.9s ease;
+                
+                
+            }
+        }
+    }
+    .header_bottom_martial_arts__bottom{
+        text-align: center;
+        margin-left: -910px;
+        ul.breadcrumb_martial_arts {
+            padding: 10px 16px;
+            list-style: none;
+            color: $clr_white;
+          }
+        ul.breadcrumb_martial_arts li.breadcrumb_martial_arts__item {
+            display: inline;
+            font-size: 18px;
+          }
+        ul.breadcrumb_martial_arts li.breadcrumb_martial_arts__item+li.breadcrumb_martial_arts__item:before {
+            padding: 8px;
+            color: $clr_white;
+            content: "/\00a0";
+          } 
+        ul.breadcrumb_martial_arts li.breadcrumb_martial_arts__item a {
+            color: $clr_gold;
+            text-decoration: none;
+          } 
+        ul.breadcrumb_martial_arts li.breadcrumb_martial_arts__item a:hover {
+            
+            text-decoration: underline;
+          }
+    }
+} 
+.container__info_martial_arts{
+    margin-bottom: -2em;
+    background: url(../../images/martial_arts_hall/1.png);
+    background-size: cover;
+    max-width: 100%;
+    min-height: 80vh;
+    .info_martial_arts{
+        @extend %flex_style;
+        column-gap: 3rem;
+        
+        
+        .info_martial_arts__img{
+            width: 600px;
+            height: 600px;
+           
+            
+                
+        }
+        .info_martial_arts__block{
+            display: flex;
+            flex-direction: column;
+            row-gap: 1em;
+        }
+        .info_martial_arts__content{
+            color: $clr_white;
+            font-size: 1.2em;
+            line-height: 30px;
+            max-width: 700px;
+        }
+        .info_martial_arts__button{
+            
+            text-align: center;
+            padding: 20px 0px;
+            &:hover{
+                @extend %button_hover;
+            }
+            &:not(:hover) {
+           
+                transition: all 0.9s ease;
+                
+                
+            }
+        }
+    }
+}
+@media screen and (max-width:1245px){
+    .header{
+        .header__body{
+            
+            .header__menu{
+                width: 35%;
+            }
+        }
+    }
+    
+}
+@media screen and (max-width:1200px){
+    .container{
+        max-width: 970px;
+        
+        
+        .header_bottom_martial_arts{
+            .header_bottom_martial_arts__top{
+                column-gap: 32.5rem;
+            }
+            .header_bottom_martial_arts__bottom{
+                margin-left: -660px;
+            }
+            
+        }
+        
+     
+    }
+    .header{
+        .header__body{
+            column-gap: 8em;
+            .header__menu{
+                width: 33%;
+            }
+        }
+    }
+   
+    .galery{
+        display: none;
+    }
+  
+    .desktop_big{
+        display: none;
+       }
+    .sales{
+        max-width: 970px; 
+    }
+    .container__info_martial_arts{
+        min-height: 60vh;
+        .info_martial_arts{
+            margin-right: 1em;
+            column-gap: 0.5rem;  
+            .info_martial_arts__img{
+                width: 500px;
+                height: 500px;
+            }
+        }
+    }
+}
+@media screen and  (max-width:992px){
+    .container{
+        max-width: 750px;
+       
+        .header_bottom_martial_arts{
+            .header_bottom_martial_arts__top{
+                column-gap: 19rem;
+            }
+            .header_bottom_martial_arts__bottom{
+                margin-left: -470px;
+            }
+            
+        }
+    }
+    .header{
+        .header__body{
+            column-gap: 7em;
+            .icon-tabler-phone-call{
+                display: none;
+            }
+            .social-links{
+                display: none;
+            }
+            .profile__title{
+                display: none;
+            }
+           .header__menu{
+                width: 40%;
+           }
+        }
+    }
+    
+    .galery{
+        display: none;
+    }
+   .desktop_small{
+        display: none;
+   } 
+    
+}
+@media screen and (max-width:781px){
+    .container{
+        max-width: none;
+        iframe{
+            max-width: 650px;
+            height: 400px;
+       } 
+       
+        .header_bottom_martial_arts{
+            .header_bottom_martial_arts__top{
+                column-gap:14rem;
+            }
+            .header_bottom_martial_arts__bottom{
+                margin-left: -400px;
+        }
+        
+        }
+        
+    }
+    .header{
+        .header__body{
+            column-gap: 5em;
+            .phone{
+
+                font-size: 1.4em;
+           }
+           .header__menu{
+                width: 50%;
+            }
+        }
+       
+    }
+  
+    .form{
+        max-width: 600px;
+    }
+    .tablet{
+        display: none;
+    }
+    .inform{
+        flex: 0 0 45%;
+    }
+    .footer__row{
+        justify-content: center;
+        margin-right: 2em;
+        .footer__logo{
+            padding-top: -20px;
+        }
+    }
+    
+    .container__info_martial_arts{
+        min-height: 50vh;
+        .info_martial_arts{
+            
+            .info_martial_arts__content{
+                text-align: center;
+                max-width: 550px;
+                font-size: 1.4em;
+                margin-top: 130px;
+            }
+            
+        }
+    }
+    
+}
+@media screen and (max-width:685px){
+    .container{
+        iframe{
+            max-width: 500px;
+            height: 350px;
+       } 
+       
+       
+        .header_bottom_martial_arts{
+            .header_bottom_martial_arts__top{
+                column-gap:15.5rem;
+                a{
+                    span{
+                        display: none;
+                    }
+                    svg{
+                        width:32px;
+                        height:32px;
+                    }
+                }
+               
+            }
+            .header_bottom_martial_arts__bottom{
+                margin-left: -230px;
+            }
+       
+        
+        }
+    }
+    .header{
+        .header__body{
+            column-gap: 7rem;
+           
+            .phone{
+                display: none;
+            }
+            .header__menu{
+                width: 100%;
+            }
+            .header__list{
+
+                li{
+                    
+                    text-align: center;
+                    
+                }
+            }
+           
+        }
+    }
+    .form{
+        max-width: 500px;
+        .form__title{
+            font-size: 1.5em;
+            
+        }
+        .form__content{
+            max-width: 450px;
+        }
+    }
+    .next, .prev{
+        display: none;
+    }
+    .container__info_martial_arts{
+        .info_martial_arts{
+            
+            .info_martial_arts__content{
+               
+                margin-top: 4.5em;
+            }
+        }
+    }
+}
+@media screen and (max-width:575px){
+    .container{
+        iframe{
+            max-width: 450px;
+            height: 300px;
+       } 
+       .header_bottom_martial_arts{
+            .header_bottom_martial_arts__top{
+                column-gap:13.3rem;
+            }
+            .header_bottom_martial_arts__bottom{
+                margin-left: -195px;
+            }
+        }
+       
+       .subscriptions_items{
+            max-width: 1000px;
+            .subscription{
+                max-width: 450px;
+                .subscription__price{
+                    padding-left: 315px;
+                }
+                .button{
+                    margin-left: 290px;
+                }
+           } 
+       }
+       
+        
+    }
+    .header{
+        .header__body{
+            column-gap: 6rem;
+           
+           
+           
+        }
+    }
+    .form{
+        max-width: 450px;
+        .form__title{
+            font-size: 1.5em;
+            
+        }
+        .form__content{
+            max-width: 350px;
+        }
+    }
+    
+   .mobile{
+    display: none;
+   }
+   .container__info_martial_arts{
+    .info_martial_arts{
+        
+        .info_martial_arts__content{
+            max-width: 400px;
+            margin-top: 3em;
+        }
+    }
+}
+}

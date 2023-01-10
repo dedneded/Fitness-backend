@@ -1,0 +1,41 @@
+@import "settings";
+body{
+    background: $bgd;
+    font-size: $fz;
+    font-family:$f_family;
+    font-style: $f_style;
+}
+.button{
+    
+    border: 1px solid $clr_gold;
+    border-radius: 8px;
+    font-size: 1.1em;
+    line-height: 152%;
+    color: $clr_white;
+    transition: all 0.3s ease;
+}
+h2{
+    color: $clr_white;
+    font-size: 2.4em;
+    text-align: center;
+    font-weight: 700;
+}
+.container{
+    max-width: 1200px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+   
+}
+
+%flex_style{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+%button_hover{
+    background: $clr_gold;
+    color: $clr_black;
+}

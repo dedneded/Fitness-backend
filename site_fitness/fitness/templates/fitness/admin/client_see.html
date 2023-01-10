@@ -1,0 +1,105 @@
+{% extends 'fitness/admin/base.html' %}
+{% load static %}
+{% block content %}
+
+    {% block breadcrumb %}
+        <div class="container-lg mt-4 pb-4">
+            <nav aria-label="breadcrumb" class="bg-light shadow rounded-3 py-3">
+                <div class="row px-3 ">
+                    <ol class="breadcrumb  col-xl-6 col-md-11 col-sm-12  px-3 px-sm-2 my-auto">
+                        <li class="breadcrumb-item">Кабинет администратора</li>
+                        <li class="breadcrumb-item"><a class=" text-decoration-none" href="admin_clients.html">Клиенты</a></li>
+                        <li class="breadcrumb-item">Клиент Иванов Иван Иванович</li>
+                    </ol>
+                    <a class = " text-end col-xl-6 col-md-1 col-sm-12 " href="admin_client.html">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="28" height="28" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
+                            <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path>
+                            <path d="M16 5l3 3"></path>
+                         </svg>
+                    </a>
+                </div>
+            </nav>    
+
+        </div> 
+    {% endblock %}
+    <section class="personal_data ">
+        <div class="container-lg ">
+          <div class="row ">
+            <div class="col-lg-4 mb-4 h-100">
+               
+              <div class="card  bg-light shadow border-0">
+                <div class="card-body  text-center  photo">
+                    {% if client.photo_path %}
+                        <img  src="{{ client.photo_path.url }}" class="rounded-circle img-profile " />
+                    {% else %}
+                        <img src="{% static 'fitness/images/photo.png' %}" class="rounded-circle img-profile " />
+                    {% endif %}
+                    
+                  </div>
+               
+               
+              </div>
+            </div>
+            <div class="col-lg-8 ">
+              <div class="card bg-light shadow mb-4 border-0">
+                <div class="card-body ">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0 title">ФИО</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{ client.name }}</p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0 title">Дата рождения</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{ client.date_of_birth }}</p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0 title">Телефон</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{ client.phone }}</p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0 title">Почта</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{ client.mail }}</p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0 title">Доп. сведения</p>
+                    </div>
+                    <div class="col-sm-9">
+                        {% if client.comment %}
+                            <p class="text-muted mb-0">{{ client.comment }}</p>
+                        {% else %}
+                            <p class="text-muted mb-0">Нет информации</p>
+                        {% endif %}
+                      
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+    </section>
+{% endblock %}

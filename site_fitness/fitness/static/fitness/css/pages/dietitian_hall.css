@@ -1,0 +1,432 @@
+@charset "UTF-8";
+/*Обнуление*/
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+:focus, :active {
+  outline: none;
+}
+
+a:focus, a:active {
+  outline: none;
+}
+
+nav, footer, header, aside {
+  display: block;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  font-size: 14px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+input, button, textarea {
+  font-family: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a, a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/*--------------------*/
+body {
+  background: #030303;
+  font-size: 16px;
+  font-family: "Montserrat";
+  font-style: "normal";
+}
+
+.button {
+  border: 1px solid #D0A452;
+  border-radius: 8px;
+  font-size: 1.1em;
+  line-height: 152%;
+  color: #FFFFFF;
+  transition: all 0.3s ease;
+}
+
+h2 {
+  color: #FFFFFF;
+  font-size: 2.4em;
+  text-align: center;
+  font-weight: 700;
+}
+
+.container {
+  max-width: 1200px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.container__info_dietitian .info_dietitian, .header_bottom_dietitian .header_bottom_dietitian__top .favourites, .header_bottom_dietitian .header_bottom_dietitian__top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header_bottom_dietitian .header_bottom_dietitian__top {
+  margin-top: 5em;
+  -moz-column-gap: 48.4rem;
+       column-gap: 48.4rem;
+}
+.header_bottom_dietitian .header_bottom_dietitian__top h2 {
+  font-size: 1.5em;
+  color: #D0A452;
+}
+.header_bottom_dietitian .header_bottom_dietitian__top .favourites {
+  -moz-column-gap: 0.5rem;
+       column-gap: 0.5rem;
+  padding-left: 25px;
+  color: #FFFFFF;
+}
+.header_bottom_dietitian .header_bottom_dietitian__top .favourites span {
+  font-size: 1em;
+}
+.header_bottom_dietitian .header_bottom_dietitian__top .favourites svg {
+  color: #D0A452;
+}
+.header_bottom_dietitian .header_bottom_dietitian__top .favourites:hover svg {
+  fill: #D0A452;
+}
+.header_bottom_dietitian .header_bottom_dietitian__top .favourites:not(:hover) {
+  transition: all 0.9s ease;
+}
+.header_bottom_dietitian .header_bottom_dietitian__bottom {
+  text-align: center;
+  margin-left: -880px;
+}
+.header_bottom_dietitian .header_bottom_dietitian__bottom ul.breadcrumb_dietitian {
+  padding: 10px 16px;
+  list-style: none;
+  color: #FFFFFF;
+}
+.header_bottom_dietitian .header_bottom_dietitian__bottom ul.breadcrumb_dietitian li.breadcrumb_dietitian__item {
+  display: inline;
+  font-size: 18px;
+}
+.header_bottom_dietitian .header_bottom_dietitian__bottom ul.breadcrumb_dietitian li.breadcrumb_dietitian__item + li.breadcrumb_dietitian__item:before {
+  padding: 8px;
+  color: #FFFFFF;
+  content: "/ ";
+}
+.header_bottom_dietitian .header_bottom_dietitian__bottom ul.breadcrumb_dietitian li.breadcrumb_dietitian__item a {
+  color: #D0A452;
+  text-decoration: none;
+}
+.header_bottom_dietitian .header_bottom_dietitian__bottom ul.breadcrumb_dietitian li.breadcrumb_dietitian__item a:hover {
+  text-decoration: underline;
+}
+
+.container__info_dietitian {
+  background: url(../../images/dietitian_hall/1.png);
+  background-size: cover;
+  max-width: 100%;
+  min-height: 80vh;
+  margin-bottom: 3em;
+}
+.container__info_dietitian .info_dietitian {
+  -moz-column-gap: 0.5rem;
+       column-gap: 0.5rem;
+}
+.container__info_dietitian .info_dietitian .info_dietitian__img {
+  margin-top: 4em;
+  width: 677px;
+  height: 564px;
+}
+.container__info_dietitian .info_dietitian ol {
+  font-size: 2em;
+  list-style: none;
+  color: #FFFFFF;
+}
+.container__info_dietitian .info_dietitian ol > li {
+  padding-left: 40px;
+  padding-top: 1em;
+  position: relative;
+}
+.container__info_dietitian .info_dietitian ol > li:before {
+  padding-top: 1em;
+  content: "✔";
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #D0A452;
+}
+
+@media screen and (max-width: 1245px) {
+  .header .header__body .header__menu {
+    width: 35%;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .container {
+    max-width: 970px;
+  }
+  .container .services__button {
+    display: inline-block;
+  }
+  .container .services__button .button {
+    margin-top: 1em;
+  }
+  .container .header_bottom_dietitian .header_bottom_dietitian__top {
+    -moz-column-gap: 30.5rem;
+         column-gap: 30.5rem;
+  }
+  .container .header_bottom_dietitian .header_bottom_dietitian__bottom {
+    margin-left: -630px;
+  }
+  .header .header__body {
+    -moz-column-gap: 8em;
+         column-gap: 8em;
+  }
+  .header .header__body .header__menu {
+    width: 33%;
+  }
+  .desktop_big {
+    display: none;
+  }
+  .sales {
+    max-width: 970px;
+  }
+  .container__info_dietitian {
+    min-height: 60vh;
+  }
+  .container__info_dietitian .info_dietitian {
+    margin-right: 1em;
+    margin-left: 1em;
+  }
+  .container__info_dietitian .info_dietitian .info_dietitian__img {
+    margin-top: 2em;
+    width: 500px;
+    height: 500px;
+  }
+  .container__info_dietitian .info_dietitian ol {
+    margin-right: 1em;
+    font-size: 1.8em;
+  }
+}
+@media screen and (max-width: 992px) {
+  .container {
+    max-width: 750px;
+  }
+  .container .header_bottom_dietitian .header_bottom_dietitian__top {
+    -moz-column-gap: 17.5rem;
+         column-gap: 17.5rem;
+  }
+  .container .header_bottom_dietitian .header_bottom_dietitian__bottom {
+    margin-left: -450px;
+  }
+  .container .header_bottom_dietitian ol {
+    margin-right: 1em;
+    font-size: 1.5em;
+  }
+  .header .header__body {
+    -moz-column-gap: 7em;
+         column-gap: 7em;
+  }
+  .header .header__body .icon-tabler-phone-call {
+    display: none;
+  }
+  .header .header__body .social-links {
+    display: none;
+  }
+  .header .header__body .profile__title {
+    display: none;
+  }
+  .header .header__body .header__menu {
+    width: 40%;
+  }
+  .desktop_small {
+    display: none;
+  }
+  .container__info_dietitian .info_dietitian .info_dietitian__img {
+    width: 450px;
+    height: 450px;
+  }
+  .container__info_dietitian .info_dietitian ol {
+    padding-right: 2em;
+  }
+}
+@media screen and (max-width: 781px) {
+  .container {
+    max-width: none;
+  }
+  .container .header_bottom_dietitian .header_bottom_dietitian__top {
+    -moz-column-gap: 12.3rem;
+         column-gap: 12.3rem;
+  }
+  .container .header_bottom_dietitian .header_bottom_dietitian__bottom {
+    margin-left: -375px;
+  }
+  .header .header__body {
+    -moz-column-gap: 5em;
+         column-gap: 5em;
+  }
+  .header .header__body .phone {
+    font-size: 1.4em;
+  }
+  .header .header__body .header__menu {
+    width: 50%;
+  }
+  .form {
+    max-width: 600px;
+  }
+  .tablet {
+    display: none;
+  }
+  .inform {
+    flex: 0 0 45%;
+  }
+  .footer__row {
+    justify-content: center;
+    margin-right: 2em;
+  }
+  .footer__row .footer__logo {
+    padding-top: -20px;
+  }
+  .container__info_dietitian {
+    min-height: 60vh;
+  }
+  .container__info_dietitian .info_dietitian ol {
+    padding-left: 100px;
+    padding-top: 50px;
+    font-size: 2em;
+  }
+  .container__info_dietitian .info_dietitian ol > li {
+    text-align: left;
+  }
+  .container__info_dietitian .info_dietitian ol > li:before {
+    padding-top: 1em;
+    content: "✔";
+    position: absolute;
+    top: 0;
+    left: 5px;
+    color: #D0A452;
+  }
+}
+@media screen and (max-width: 685px) {
+  .container .header_bottom_dietitian .header_bottom_dietitian__top {
+    -moz-column-gap: 14rem;
+         column-gap: 14rem;
+  }
+  .container .header_bottom_dietitian .header_bottom_dietitian__top a span {
+    display: none;
+  }
+  .container .header_bottom_dietitian .header_bottom_dietitian__top a svg {
+    width: 32px;
+    height: 32px;
+  }
+  .container .header_bottom_dietitian .header_bottom_dietitian__bottom {
+    margin-left: -210px;
+  }
+  .header .header__body {
+    -moz-column-gap: 7rem;
+         column-gap: 7rem;
+  }
+  .header .header__body .phone {
+    display: none;
+  }
+  .header .header__body .header__menu {
+    width: 100%;
+  }
+  .header .header__body .header__list li {
+    text-align: center;
+  }
+  .form {
+    max-width: 500px;
+  }
+  .form .form__title {
+    font-size: 1.5em;
+  }
+  .form .form__content {
+    max-width: 450px;
+  }
+  .next, .prev {
+    display: none;
+  }
+}
+@media screen and (max-width: 575px) {
+  .container .header_bottom_dietitian .header_bottom_dietitian__top {
+    -moz-column-gap: 11.3rem;
+         column-gap: 11.3rem;
+  }
+  .container .header_bottom_dietitian .header_bottom_dietitian__bottom {
+    margin-left: -170px;
+  }
+  .container .subscriptions_items {
+    max-width: 1000px;
+  }
+  .container .subscriptions_items .subscription {
+    max-width: 450px;
+  }
+  .container .subscriptions_items .subscription .subscription__price {
+    padding-left: 315px;
+  }
+  .container .subscriptions_items .subscription .button {
+    margin-left: 290px;
+  }
+  .header .header__body {
+    -moz-column-gap: 6rem;
+         column-gap: 6rem;
+  }
+  .form {
+    max-width: 450px;
+  }
+  .form .form__title {
+    font-size: 1.5em;
+  }
+  .form .form__content {
+    max-width: 350px;
+  }
+  .mobile {
+    display: none;
+  }
+  .container__info_dietitian .info_dietitian .info__content {
+    max-width: 500px;
+  }
+}/*# sourceMappingURL=dietitian_hall.css.map */

@@ -1,0 +1,18 @@
+.galery .galery_list {
+  min-height: 1px;
+  padding: 0 10px 0px 10px;
+  font-size: 0;
+  box-sizing: border-box;
+  width: 100%;
+}
+.galery .galery_list .galery-item {
+  width: 25%;
+  display: inline-block;
+  vertical-align: top;
+  padding: 20px 10px 0 10px;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+.galery .galery_list .galery-item .galery-image {
+  width: 100%;
+}/*# sourceMappingURL=galery.css.map */

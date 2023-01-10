@@ -1,0 +1,97 @@
+@import "../core/_core";
+.dishes{
+    h2{
+        margin-top: 1.3em;
+        margin-bottom: 1.3em;
+    }
+    margin: 1em auto;
+    .dishes_items{
+        @extend %flex_style;
+        margin: 2em auto;
+        flex-wrap: wrap;
+        max-width: 1300px;
+        
+        .dish{
+            max-height: 360px;
+            max-width: 560px;
+            padding: 0px 0px 50px 0px;
+            margin: 1em;
+            border: 1px solid rgb(255, 255, 255);
+            border-radius: 8px;
+            .dish__title{
+                color: $clr_gold;
+                font-size: 1.5em;
+                line-height: 143%;
+                width: 450px;
+                padding: 25px 0px 0px 30px;
+                font-weight: 700;
+            }
+            .dish__time{
+                color: $clr_white;
+                opacity: 0.6;
+                font-size: 1em;
+                line-height: 143%;
+                width: 450px;
+                padding: 0px 0px 0px 45px;
+            }
+            
+            ol{
+                list-style: none;
+                color: $clr_white;
+                padding: 1px 0px 0px 35px;
+            }
+            ol > li{
+                padding-left: 20px;
+                position: relative;
+                margin: 10px;
+            }
+            ol > li:before{
+                content: '✔';
+                position: absolute; top: 0; left: 0;
+                color: $clr_gold;
+            }
+            .dish__price{
+                color: $clr_white;
+                font-size: 1.5em;
+                line-height: 143%;
+                width: 550px;
+                padding: 5px 0px 5px 400px;
+                margin-bottom: 0.5em;
+               
+            }
+            .button{
+                background: none;
+               
+                padding: 10px 30px;
+                border: 1px solid $clr_gold;
+                margin: 0px 20px 0px 390px;
+                &:hover{
+                    @extend %button_hover;
+                }
+                &:not(:hover) {
+                   
+                    transition: all 0.9s ease;
+                    
+                    
+                }
+            }
+        }
+    }
+    .dishes__button{
+        margin-top: -1em;
+        text-align: center;
+        
+        .button{
+            padding: 10px 30px;
+            &:hover{
+                @extend %button_hover;
+            }
+            &:not(:hover) {
+                   
+                transition: all 0.9s ease;
+                
+                
+            }
+        }
+    }
+}

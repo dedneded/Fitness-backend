@@ -1,0 +1,59 @@
+.link_hover:hover {
+  transition: all 0.3s ease;
+  color: #FFC107 !important;
+}
+
+.danger_hover:not(:hover), .link_hover:not(:hover) {
+  transition: all 0.5s ease;
+}
+
+.danger_hover:hover {
+  transition: all 0.3s ease;
+  color: #ffaeae !important;
+}
+
+.title {
+  font-weight: 700;
+}
+
+html, body {
+  background: #eee;
+  height: 100%;
+}
+
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 1 auto;
+}
+
+.custom_butt {
+  width: 8em;
+}
+
+.img-wrapper {
+  position: relative !important;
+}
+.img-wrapper:hover .img-hover {
+  opacity: 0.5 !important;
+}
+.img-wrapper:hover .btn-image {
+  display: block !important;
+}
+.img-wrapper .btn-image {
+  display: none !important;
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+.img-profile {
+  width: 207px;
+  height: 207.5px;
+  pointer-events: none;
+}/*# sourceMappingURL=admin_style.css.map */

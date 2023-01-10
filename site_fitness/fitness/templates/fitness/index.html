@@ -14,9 +14,7 @@
             <li class="galery-item"><img class="galery-image" src="{{ i.photos.first.photo_path.url }}" alt=""/></li>
         {% endfor %}
     </ol>
-    {% for i in client %}
-        <p>{{ i.name }}</p>
-    {% endfor %}
+
 </section>
 {% include 'fitness/halls_temp.html' %}
 {% include 'fitness/trainers_temp.html' %}

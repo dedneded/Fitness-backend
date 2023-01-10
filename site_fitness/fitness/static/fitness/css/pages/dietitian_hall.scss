@@ -1,0 +1,424 @@
+@import "../core/_core";
+.header_bottom_dietitian{
+   
+    
+    .header_bottom_dietitian__top{
+        margin-top: 5em;
+        @extend %flex_style;
+        column-gap: 48.4rem;
+        h2{
+            font-size: 1.5em;
+            color: $clr_gold;
+        }
+        .favourites{
+            @extend %flex_style;
+            column-gap: 0.5rem;
+            padding-left: 25px;
+            color: $clr_white;
+            span{
+                
+                font-size: 1em;
+                
+            }
+            svg{
+                color: $clr_gold;
+                
+            }
+            &:hover{
+                
+                svg{
+                    fill: $clr_gold ;
+                    
+                }
+                
+            }
+            &:not(:hover) {
+                   
+                transition: all 0.9s ease;
+                
+                
+            }
+        }
+    }
+    .header_bottom_dietitian__bottom{
+        text-align: center;
+        margin-left: -880px;
+        ul.breadcrumb_dietitian {
+            padding: 10px 16px;
+            list-style: none;
+            color: $clr_white;
+          }
+        ul.breadcrumb_dietitian li.breadcrumb_dietitian__item {
+            display: inline;
+            font-size: 18px;
+          }
+        ul.breadcrumb_dietitian li.breadcrumb_dietitian__item+li.breadcrumb_dietitian__item:before {
+            padding: 8px;
+            color: $clr_white;
+            content: "/\00a0";
+          } 
+        ul.breadcrumb_dietitian li.breadcrumb_dietitian__item a {
+            color: $clr_gold;
+            text-decoration: none;
+          } 
+        ul.breadcrumb_dietitian li.breadcrumb_dietitian__item a:hover {
+            
+            text-decoration: underline;
+          }
+    }
+} 
+.container__info_dietitian{
+    
+    background: url(../../images/dietitian_hall/1.png);
+    background-size: cover;
+    max-width: 100%;
+    min-height: 80vh;
+    margin-bottom: 3em;
+    .info_dietitian{
+        @extend %flex_style;
+        column-gap: 0.5rem;
+        
+        
+        .info_dietitian__img{
+            margin-top: 4em;
+            width: 677px;
+            height: 564px;
+           
+            
+                
+        }
+        ol{
+            font-size: 2em;
+            list-style: none;
+            color: $clr_white;
+            
+        }
+        ol > li{
+            padding-left: 40px;
+            padding-top: 1em;
+            position: relative;
+            
+        }
+        ol > li:before{
+            padding-top: 1em;
+            content: '✔';
+            position: absolute; top: 0; left: 0;
+            color: $clr_gold;
+        }
+    }
+}
+@media screen and (max-width:1245px){
+    .header{
+        .header__body{
+            
+            .header__menu{
+                width: 35%;
+            }
+        }
+    }
+    
+}
+@media screen and (max-width:1200px){
+    .container{
+        max-width: 970px;
+        .services__button{
+            display: inline-block;
+            .button{
+                margin-top: 1em;
+            }
+        }
+        
+        
+        .header_bottom_dietitian{
+            .header_bottom_dietitian__top{
+                column-gap: 30.5rem;
+            }
+            .header_bottom_dietitian__bottom{
+                margin-left: -630px;
+            }
+            
+        }
+        
+     
+    }
+    .header{
+        .header__body{
+            column-gap: 8em;
+            .header__menu{
+                width: 33%;
+            }
+        }
+    }
+  
+    .desktop_big{
+        display: none;
+       }
+    .sales{
+        max-width: 970px; 
+    }
+    .container__info_dietitian{
+        min-height: 60vh;
+        .info_dietitian{
+            margin-right: 1em;
+            margin-left: 1em;
+          
+            .info_dietitian__img{
+                margin-top: 2em;
+                width: 500px;
+                height: 500px;
+            }
+            ol{
+                margin-right: 1em;
+                font-size: 1.8em;
+            }
+            
+        }
+        
+    }
+}
+@media screen and  (max-width:992px){
+    .container{
+        max-width: 750px;
+        
+        .header_bottom_dietitian{
+            .header_bottom_dietitian__top{
+                column-gap: 17.5rem;
+            }
+            .header_bottom_dietitian__bottom{
+                margin-left: -450px;
+            }
+            ol{
+                margin-right: 1em;
+                font-size: 1.5em;
+            }
+            
+        }
+    }
+    .header{
+        .header__body{
+            column-gap: 7em;
+            .icon-tabler-phone-call{
+                display: none;
+            }
+            .social-links{
+                display: none;
+            }
+            .profile__title{
+                display: none;
+            }
+           .header__menu{
+                width: 40%;
+           }
+        }
+    }
+    
+   .desktop_small{
+        display: none;
+   } 
+  
+    .container__info_dietitian{
+        .info_dietitian{ 
+            .info_dietitian__img{
+                width: 450px;
+                height: 450px;
+            }
+            ol{
+                padding-right: 2em;
+            }
+        }
+        
+    }
+    
+}
+@media screen and (max-width:781px){
+    .container{
+        max-width: none;
+        
+        .header_bottom_dietitian{
+            .header_bottom_dietitian__top{
+                column-gap:12.3rem;
+            }
+            .header_bottom_dietitian__bottom{
+                margin-left: -375px;
+        }
+        
+        }
+        
+    }
+    .header{
+        .header__body{
+            column-gap: 5em;
+            .phone{
+
+                font-size: 1.4em;
+           }
+           .header__menu{
+                width: 50%;
+            }
+        }
+       
+    }
+    
+  
+    .form{
+        max-width: 600px;
+    }
+    .tablet{
+        display: none;
+    }
+    .inform{
+        flex: 0 0 45%;
+    }
+    .footer__row{
+        justify-content: center;
+        margin-right: 2em;
+        .footer__logo{
+            padding-top: -20px;
+        }
+    }
+    
+    .container__info_dietitian{
+        min-height: 60vh;
+        .info_dietitian{
+            
+            ol{
+                padding-left: 100px;
+                padding-top: 50px;
+                font-size: 2em;
+            }
+            ol > li{
+               
+                text-align: left;
+                
+               
+                
+            }
+            ol > li:before{
+                padding-top: 1em;
+                content: '✔';
+                position: absolute; top: 0; left: 5px;
+                color: $clr_gold;
+            }
+        }
+    }
+    
+}
+@media screen and (max-width:685px){
+    .container{
+        
+      
+        .header_bottom_dietitian{
+            .header_bottom_dietitian__top{
+                column-gap:14rem;
+                a{
+                    span{
+                        display: none;
+                    }
+                    svg{
+                        width:32px;
+                        height:32px;
+                    }
+                }
+               
+        }
+            .header_bottom_dietitian__bottom{
+                margin-left: -210px;
+        }
+       
+        
+        }
+    }
+    .header{
+        .header__body{
+            column-gap: 7rem;
+           
+            .phone{
+                display: none;
+            }
+            .header__menu{
+                width: 100%;
+            }
+            .header__list{
+
+                li{
+                    
+                    text-align: center;
+                    
+                }
+            }
+           
+        }
+    }
+    .form{
+        max-width: 500px;
+        .form__title{
+            font-size: 1.5em;
+            
+        }
+        .form__content{
+            max-width: 450px;
+        }
+    }
+    .next, .prev{
+        display: none;
+    }
+   
+}
+@media screen and (max-width:575px){
+    .container{
+        
+       .header_bottom_dietitian{
+            .header_bottom_dietitian__top{
+                column-gap:11.3rem;
+            }
+            .header_bottom_dietitian__bottom{
+                margin-left: -170px;
+            }
+        }
+       
+       .subscriptions_items{
+            max-width: 1000px;
+            .subscription{
+                max-width: 450px;
+                .subscription__price{
+                    padding-left: 315px;
+                }
+                .button{
+                    margin-left: 290px;
+                }
+           } 
+       }
+       
+        
+    }
+    .header{
+        .header__body{
+            column-gap: 6rem;
+           
+           
+           
+        }
+    }
+    .form{
+        max-width: 450px;
+        .form__title{
+            font-size: 1.5em;
+            
+        }
+        .form__content{
+            max-width: 350px;
+        }
+    }
+    
+   .mobile{
+    display: none;
+   }
+   .container__info_dietitian{
+    .info_dietitian{
+        
+        .info__content{
+            max-width: 500px;
+        }
+    }
+}
+}

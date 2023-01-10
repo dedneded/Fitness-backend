@@ -1,0 +1,423 @@
+@import "../core/_core";
+@import "../blocks/dishes";
+.header_bottom_cafe{
+    .header_bottom_cafe__top{
+        margin-top: 5em; 
+        @extend %flex_style;
+        column-gap: 53.7rem;
+        h2{
+            font-size: 1.5em;
+            color: $clr_gold;
+        }
+        .favourites{
+            @extend %flex_style;
+            column-gap: 0.5rem;
+            padding-left: 25px;
+            color: $clr_white;
+            span{
+                
+                font-size: 1em;
+                
+            }
+            svg{
+                color: $clr_gold;
+                
+            }
+            &:hover{
+                
+                svg{
+                    fill: $clr_gold ;
+                    
+                }
+                
+            }
+            &:not(:hover) {
+                   
+                transition: all 0.9s ease;
+                
+                
+            }
+        }
+    }
+    .header_bottom_cafe__bottom{
+        text-align: center;
+        margin-left: -940px;
+        ul.breadcrumb_cafe {
+            padding: 10px 16px;
+            list-style: none;
+            color: $clr_white;
+          }
+        ul.breadcrumb_cafe li.breadcrumb_cafe__item {
+            display: inline;
+            font-size: 18px;
+          }
+        ul.breadcrumb_cafe li.breadcrumb_cafe__item+li.breadcrumb_cafe__item:before {
+            padding: 8px;
+            color: $clr_white;
+            content: "/\00a0";
+          } 
+        ul.breadcrumb_cafe li.breadcrumb_cafe__item a {
+            color: $clr_gold;
+            text-decoration: none;
+          } 
+        ul.breadcrumb_cafe li.breadcrumb_cafe__item a:hover {
+            
+            text-decoration: underline;
+          }
+    }
+} 
+.container__info_cafe{
+   
+    background: url(../../images/cafe/2.png);
+    background-size: cover;
+    max-width: 100%;
+    min-height: 80vh;
+    .info_cafe{
+        @extend %flex_style;
+        column-gap: 5rem;
+        
+        
+        .info_cafe__img{
+            margin-top: 7em;
+            width: 480px;
+            height: 480px;
+           
+            
+                
+        }
+        .info_cafe__content{
+            margin-top: 5em;
+            .info_cafe_title{
+                
+                color: $clr_gold;
+                font-size: 2em;
+                
+            }
+            
+            color: $clr_white;
+            font-size: 1.6em;
+            line-height: 30px;
+            max-width: 600px;
+            .info_cafe__content_content{
+                padding-left: 0.2em;
+            }
+        }
+    }
+}
+@media screen and (max-width:1245px){
+    .header{
+        .header__body{
+            
+            .header__menu{
+                width: 35%;
+            }
+        }
+    }
+    
+}
+@media screen and (max-width:1200px){
+    .container{
+        max-width: 970px;
+        
+        
+        .header_bottom_cafe{
+            .header_bottom_cafe__top{
+                column-gap: 35.7rem;
+            }
+            .header_bottom_cafe__bottom{
+                margin-left: -685px;
+            }
+            
+        }
+        
+     
+    }
+    .header{
+        .header__body{
+            column-gap: 8em;
+            .header__menu{
+                width: 33%;
+            }
+        }
+    }
+    
+  
+    .desktop_big{
+        display: none;
+       }
+    .sales{
+        max-width: 970px; 
+    }
+    .container__info_cafe{
+        min-height: 60vh;
+        .info_cafe{
+            margin-right: 1em;
+            margin-left: 1em;
+            column-gap: 3rem;  
+            .info_cafe__img{
+                margin-top: 2em;
+                width: 430px;
+                height: 430px;
+            }
+            .info_cafe__content{
+                .info_cafe_title{
+                    font-size: 2em;
+                    
+                }
+                font-size: 1.4em;
+                
+            }
+        }
+        
+    }
+}
+@media screen and  (max-width:992px){
+    .container{
+        max-width: 750px;
+       
+        .header_bottom_cafe{
+            .header_bottom_cafe__top{
+                column-gap: 22.7rem;
+            }
+            .header_bottom_cafe__bottom{
+                margin-left: -505px;
+            }
+            
+        }
+    }
+    .header{
+        .header__body{
+            column-gap: 7em;
+            .icon-tabler-phone-call{
+                display: none;
+            }
+            .social-links{
+                display: none;
+            }
+            .profile__title{
+                display: none;
+            }
+           .header__menu{
+                width: 40%;
+           }
+        }
+    }
+    
+   
+   .desktop_small{
+        display: none;
+   } 
+  
+    .container__info_cafe{
+        .info_cafe{ 
+            .info_cafe__img{
+                width: 400px;
+                height: 400px;
+                margin-top: 2em;
+            }
+            .info_cafe__content{
+                
+                .info_cafe_title{
+                    font-size: 1.8em;
+                
+                }
+                font-size: 1.5em;
+                
+            }
+        }
+        
+    }
+    
+}
+@media screen and (max-width:781px){
+    .container{
+        max-width: none;
+       
+       .phone{
+        font-size: 1.4em;
+       }
+       .header_top{
+        column-gap: 6rem;
+        }
+        .header_bottom_cafe{
+            .header_bottom_cafe__top{
+                column-gap:17.6rem;
+            }
+            .header_bottom_cafe__bottom{
+                margin-left: -435px;
+            }
+        
+        }
+        
+    }
+    .header{
+        .header__body{
+            column-gap: 5em;
+            .phone{
+
+                font-size: 1.4em;
+           }
+           .header__menu{
+                width: 50%;
+            }
+        }
+       
+    }
+  
+    .form{
+        max-width: 600px;
+    }
+    .tablet{
+        display: none;
+    }
+    .inform{
+        flex: 0 0 45%;
+    }
+    .footer__row{
+        justify-content: center;
+        margin-right: 2em;
+        .footer__logo{
+            padding-top: -20px;
+        }
+    }
+    
+    .container__info_cafe{
+        min-height: 50vh;
+        .info_cafe{
+            
+            .info_cafe__content{
+                
+                text-align: center;
+                max-width: 550px;
+                font-size: 1.6em;
+                margin-top: 130px;
+                .info_title{
+                    font-size: 2.2em;
+                }
+            }
+        }
+    }
+    
+}
+@media screen and (max-width:685px){
+    .container{
+       
+        
+        
+        .header_bottom_cafe{
+            .header_bottom_cafe__top{
+                column-gap:19.3rem;
+                a{
+                    span{
+                        display: none;
+                    }
+                    svg{
+                        width:32px;
+                        height:32px;
+                    }
+                }
+               
+        }
+            .header_bottom_cafe__bottom{
+                margin-left: -270px;
+        }
+       
+        
+        }
+    }
+    .header{
+        .header__body{
+            column-gap: 7rem;
+           
+            .phone{
+                display: none;
+            }
+            .header__menu{
+                width: 100%;
+            }
+            .header__list{
+
+                li{
+                    
+                    text-align: center;
+                    
+                }
+            }
+           
+        }
+    }
+    .form{
+        max-width: 500px;
+        .form__title{
+            font-size: 1.5em;
+            
+        }
+        .form__content{
+            max-width: 450px;
+        }
+    }
+    .next, .prev{
+        display: none;
+    }
+   
+}
+@media screen and (max-width:575px){
+    .container{
+       
+       .header_bottom_cafe{
+            .header_bottom_cafe__top{
+                column-gap:16.7rem;
+            }
+            .header_bottom_cafe__bottom{
+                margin-left: -225px;
+            }
+        }
+       
+       .dishes_items{
+            max-width: 1000px;
+            .dish{
+                max-width: 450px;
+                .dish__price{
+                    padding-left: 300px;
+                    
+                }
+                .button{
+                    margin-left: 290px;
+                    
+                }
+           } 
+       }
+       
+        
+    }
+    .header{
+        .header__body{
+            column-gap: 6rem;
+           
+           
+           
+        }
+    }
+    .form{
+        max-width: 450px;
+        .form__title{
+            font-size: 1.5em;
+            
+        }
+        .form__content{
+            max-width: 350px;
+        }
+    }
+    
+   .mobile{
+    display: none;
+   }
+   .container__info_cafe{
+    .info_cafe{
+        
+        .info_cafe__content{
+            max-width: 500px;
+        }
+    }
+}
+}

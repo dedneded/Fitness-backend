@@ -1,0 +1,197 @@
+@charset "UTF-8";
+/*Обнуление*/
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+:focus, :active {
+  outline: none;
+}
+
+a:focus, a:active {
+  outline: none;
+}
+
+nav, footer, header, aside {
+  display: block;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  font-size: 14px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+input, button, textarea {
+  font-family: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a, a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/*--------------------*/
+body {
+  background: #030303;
+  font-size: 16px;
+  font-family: "Montserrat";
+  font-style: "normal";
+}
+
+.button {
+  border: 1px solid #D0A452;
+  border-radius: 8px;
+  font-size: 1.1em;
+  line-height: 152%;
+  color: #FFFFFF;
+  transition: all 0.3s ease;
+}
+
+h2 {
+  color: #FFFFFF;
+  font-size: 2.4em;
+  text-align: center;
+  font-weight: 700;
+}
+
+.container {
+  max-width: 1200px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.dishes .dishes_items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dishes .dishes__button .button:hover, .dishes .dishes_items .dish .button:hover {
+  background: #D0A452;
+  color: #000000;
+}
+
+.dishes {
+  margin: 1em auto;
+}
+.dishes h2 {
+  margin-top: 1.3em;
+  margin-bottom: 1.3em;
+}
+.dishes .dishes_items {
+  margin: 2em auto;
+  flex-wrap: wrap;
+  max-width: 1300px;
+}
+.dishes .dishes_items .dish {
+  max-height: 360px;
+  max-width: 560px;
+  padding: 0px 0px 50px 0px;
+  margin: 1em;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 8px;
+}
+.dishes .dishes_items .dish .dish__title {
+  color: #D0A452;
+  font-size: 1.5em;
+  line-height: 143%;
+  width: 450px;
+  padding: 25px 0px 0px 30px;
+  font-weight: 700;
+}
+.dishes .dishes_items .dish .dish__time {
+  color: #FFFFFF;
+  opacity: 0.6;
+  font-size: 1em;
+  line-height: 143%;
+  width: 450px;
+  padding: 0px 0px 0px 45px;
+}
+.dishes .dishes_items .dish ol {
+  list-style: none;
+  color: #FFFFFF;
+  padding: 1px 0px 0px 35px;
+}
+.dishes .dishes_items .dish ol > li {
+  padding-left: 20px;
+  position: relative;
+  margin: 10px;
+}
+.dishes .dishes_items .dish ol > li:before {
+  content: "✔";
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #D0A452;
+}
+.dishes .dishes_items .dish .dish__price {
+  color: #FFFFFF;
+  font-size: 1.5em;
+  line-height: 143%;
+  width: 550px;
+  padding: 5px 0px 5px 400px;
+  margin-bottom: 0.5em;
+}
+.dishes .dishes_items .dish .button {
+  background: none;
+  padding: 10px 30px;
+  border: 1px solid #D0A452;
+  margin: 0px 20px 0px 390px;
+}
+.dishes .dishes_items .dish .button:not(:hover) {
+  transition: all 0.9s ease;
+}
+.dishes .dishes__button {
+  margin-top: -1em;
+  text-align: center;
+}
+.dishes .dishes__button .button {
+  padding: 10px 30px;
+}
+.dishes .dishes__button .button:not(:hover) {
+  transition: all 0.9s ease;
+}/*# sourceMappingURL=dishes.css.map */
