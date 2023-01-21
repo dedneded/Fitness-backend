@@ -1,0 +1,176 @@
+{% extends 'fitness/admin/base.html' %}
+{% load static %}
+{% block content %}
+    {% block breadcrumb %}
+    <div class="container-lg mt-4 pb-4">
+        <nav aria-label="breadcrumb" class="bg-light shadow rounded-3 py-3">
+            <div class="row px-3 ">
+                <ol class="breadcrumb  col-xl-8  col-md-11 col-sm-12 px-3 px-sm-2 my-auto">
+                    <li class="breadcrumb-item">Кабинет администратора</li>
+                    <li class="breadcrumb-item"><a class="text-decoration-none" href="{% url 'admin_employees' %}">Сотрудники</a></li>
+                    <li class="breadcrumb-item">Сотрудник {{employee.name}}</li>
+                </ol>
+                <a class = " text-end col-xl-4 col-md-1 col-sm-12" href="{% url 'employee_edit' pk=employee.pk %}">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="28" height="28" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
+                        <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path>
+                        <path d="M16 5l3 3"></path>
+                     </svg>
+                </a>
+            </div>
+        </nav>    
+          
+    </div> 
+    {% endblock %}
+    <section class="personal_data ">
+        <div class="container-lg">
+          <div class="row ">
+            <div class="col-lg-4 h-100 mb-4">
+              <div class="card bg-light shadow border-0">
+                <div class="card-body text-center photo">
+                    {% if employee.photo_path %}
+                        <img  src="{{ employee.photo_path.url }}" class="rounded-circle img-profile " />
+                    {% else %}
+                        <img src="{% static 'fitness/images/photo.png' %}" class="rounded-circle img-profile " />
+                    {% endif %}
+                  
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-8 ">
+              <div class="card bg-light shadow mb-4 border-0">
+                <div class="card-body ">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0 title">ФИО</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{employee.name}}</p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0 title">Дата рождения</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{employee.date_of_birth}}</p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0 title">Телефон</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{employee.phone}}</p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0 title">Почта</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{employee.mail}}</p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0 title">Квалификация</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{employee.sport_category}}</p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0 title">Место работы</p>
+                    </div>
+                    <div class="col-sm-9">
+                        
+                        {% for n in employee.services.all %}
+                            <p class="text-muted mb-0">{{n.name}}</p>
+                        {% endfor %}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0 title">Должность</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{employee.roles.first.name}}</p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0 title">Дополнительно</p>
+                    </div>
+                    <div class="col-sm-9">
+                        {% if employee.comment %}
+                            <p class="text-muted mb-0">{{ employee.comment }}</p>
+                        {% else %}
+                            <p class="text-muted mb-0">Нет информации</p>
+                        {% endif %}
+                      
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+              
+            </div>
+            <div class="container-lg">
+                <form class="bg-light shadow p-3 px-4 rounded-3 overflow-auto">
+                    <div class="row">    
+                       <div class="form-group col-12 text-center  ">
+                            <span class="client_id fs-3">Должности сотрудника</span>
+                        </div>
+                        
+                       
+                        
+                    </div>
+                    <table class="table table-hover mt-4">
+                        <thead>
+                            <tr>
+                              <th scope="col"><a href="" class=" text-decoration-none text-warning link_hover"><span class="fw-bold">&#8645;&nbsp;Id</span> </a></th>
+                              <th scope="col"><a href="" class=" text-decoration-none text-black link_hover"><span class="fw-bold">&#8645;&nbsp;Название</span></a></th>
+                              <th scope="col"><a href="" class=" text-decoration-none text-black link_hover"><span class="fw-bold">&#8645;&nbsp;Место&nbsp;работы</span></a></th>
+                              
+                              
+                              
+                              
+                            </tr>
+                        </thead>
+                        <tbody>
+                          {% for n in employee.roles.all %}
+                          <tr>
+                            <th scope="row">{{ n.id }}</th>  
+                            <td><a class="text-decoration-none " href="admin_role_see.html">{{ n.name }}</a></td> 
+                            <td><a class="text-decoration-none  " href="admin_hall_see.html">{{ n.place }}</a></td> 
+                            
+                          
+                          
+                          
+                        </tr>
+                          {% endfor %}
+                            
+                            
+
+                            
+                        </tbody>
+                    </table>
+                    
+                   
+                </form>
+                
+            </div>
+          </div>
+        </div>
+    </section> 
+{% endblock %}

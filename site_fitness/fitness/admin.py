@@ -39,6 +39,15 @@ class FeedbackAdmin(admin.ModelAdmin):
     list_display_links = ('id', 'main_phrase')
 
 
+class PermissionAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name')
+    list_display_links = ('id', 'name')
+
+class RoleAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name')
+    list_display_links = ('id', 'name')
+
+
 admin.site.register(Client, ClientAdmin)
 admin.site.register(Service, ServiceAdmin)
 admin.site.register(ServicePhoto, ServicePhotoAdmin)
@@ -46,4 +55,5 @@ admin.site.register(Employee, EmployeeAdmin)
 admin.site.register(Discount, DiscountAdmin)
 admin.site.register(Subscription, SubscriptionAdmin)
 admin.site.register(Feedback, FeedbackAdmin)
-
+admin.site.register(Permission, PermissionAdmin)
+admin.site.register(Role, RoleAdmin)

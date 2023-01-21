@@ -7,29 +7,26 @@
                 <div class="row px-3 ">
                     <ol class="breadcrumb  col-xl-6 col-sm-11  px-3 px-sm-2 my-auto">
                         <li class="breadcrumb-item">Кабинет администратора</li>
-                        <li class="breadcrumb-item"><a class=" text-decoration-none" href="admin_clients.html">Клиенты</a></li>
+                        <li class="breadcrumb-item"><a class=" text-decoration-none" href="{% url 'admin_clients' %}">Клиенты</a></li>
                         <li class="breadcrumb-item">{{bredcrumbs}}</li>
                     </ol>
-                    <a class = " text-end col-xl-6 col-sm-1 text-danger danger_hover" href="">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <line x1="4" y1="7" x2="20" y2="7"></line>
-                            <line x1="10" y1="11" x2="10" y2="17"></line>
-                            <line x1="14" y1="11" x2="14" y2="17"></line>
-                            <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
-                            <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
-                        </svg>
-                    </a>
+
+                    
                 </div>
             </nav>    
 
         </div> 
     {% endblock %}
+    
     <div class="container-lg">
         <form class="bg-light shadow p-3 px-4 rounded-3" method="POST"> 
             {% csrf_token %}
             <div class="row mt-2">
-
+                <div class="form-group col-12 text-center mb-3">
+                    <label class="fs-3" for="client_id">id: </label>
+                    <span class="client_id fs-3">{{client.id}}</span>
+                    
+                </div>
                 <div class="form-group col-md-6 col-sm-12">
                     <label for="emp_name">ФИО</label>
                     
@@ -50,12 +47,7 @@
                         {{form.mail}}
 
                     </div>
-                    {% if messages %}
-                        {% for message in messages %}
-                            <div class="text-danger fs-4 text-start alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
-                                {{ message }}</div>
-                        {% endfor %}
-                    {% endif %}
+
                 </div>
                 <div class="form-group col-md-6 col-sm-12 mt-xl-0 mt-md-2">
                     <label for="exampleFormControlTextarea1" >Дополнительная информация</label>

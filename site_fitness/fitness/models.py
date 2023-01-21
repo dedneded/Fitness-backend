@@ -26,7 +26,8 @@ class Service(models.Model):
     advantages = models.ManyToManyField('Advantage', null=True, blank=True)
     visits = models.ManyToManyField('Visit', through='VisitService', null=True, blank=True)
     subscriptions = models.ManyToManyField('Subscription', null=True, blank=True)
-    discounts = models.ManyToManyField('Discount', through='DiscountService',null=True, blank=True)
+    discounts = models.ManyToManyField('Discount', through='DiscountService', null=True, blank=True)
+
 
     def __str__(self):
         return self.name
@@ -66,6 +67,7 @@ class Employee(models.Model):
     phone = models.CharField(max_length=255)
     mail = models.CharField(max_length=255)
     photo_path = models.ImageField(upload_to="photos/", null=True, blank=True)
+    is_hourly = models.BooleanField(null=True, blank=True)
 
     class SportCategories(models.IntegerChoices):
         MASTER_OF_SPORTS_OF_INTERNATIONAL_CLASS = 1
@@ -184,12 +186,15 @@ class Role(models.Model):
     name = models.CharField(max_length=255)
     date_delete = models.DateTimeField(null=True, blank=True)
     permissions = models.ManyToManyField('Permission')
-
+    place = models.ForeignKey('Service', on_delete=models.PROTECT, null=True, blank=True)
+    def __str__(self):
+        return self.name
 
 class Permission(models.Model):
     name = models.CharField(max_length=255)
-    code = models.CharField(max_length=255)
-
+    code = models.CharField(max_length=255, null=True, blank=True)
+    def __str__(self):
+        return self.name
 
 class ServiceTimetable(models.Model):
     start = models.DateTimeField()

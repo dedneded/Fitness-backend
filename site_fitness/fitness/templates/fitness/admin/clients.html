@@ -9,6 +9,7 @@
                         <li class="breadcrumb-item">Кабинет администратора</li>
                         <li class="breadcrumb-item">{{title}}</li>
                     </ol>
+
                     <a class = " text-end col-xl-6 col-sm-1 " href="{% url 'admin_client_create' %}">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -102,10 +103,10 @@
                         {% for i in client %}
                         <tr>
                           <th scope="row">{{i.pk}}</th>
-                          <td><a class="text-decoration-none " href="admin_client_see.html">{{i.name}}</a></td>
-                          <td><a class="text-decoration-none text-black" href="admin_client_see.html">{{i.phone}}</a></td>
-                          <td><a class="text-decoration-none text-black" href="admin_client_see.html">{{i.mail}}</a></td>
-                          <td><a class="text-decoration-none text-black" href="admin_client_see.html">{{i.date_of_birth}}</a></td>
+                          <td><a class="text-decoration-none " href="{% url 'client_detail' pk=i.pk %}">{{i.name}}</a></td>
+                          <td><a class="text-decoration-none text-black" href="{% url 'client_detail' pk=i.pk %}">{{i.phone}}</a></td>
+                          <td><a class="text-decoration-none text-black" href="{% url 'client_detail' pk=i.pk %}">{{i.mail}}</a></td>
+                          <td><a class="text-decoration-none text-black" href="{% url 'client_detail' pk=i.pk %}">{{i.date_of_birth}}</a></td>
                         
                         </tr>
                         {% endfor %}

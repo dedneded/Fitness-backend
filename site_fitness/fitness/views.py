@@ -1,11 +1,13 @@
+from datetime import datetime
+
 from django.http import HttpResponse, HttpResponseNotFound, Http404, HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 
 from .forms import *
 from .models import *
-from django.views.generic import ListView, CreateView, DetailView, UpdateView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from .utils import *
 
 menu = [{'title': "Главная", 'url_name': 'home'},
@@ -111,20 +113,24 @@ class AdminClients(ListView):
         context['sort'] = self.sort
         form = ClientsForm(self.request.GET)
         context['form'] = form
-        #if form.is_valid():
-            #context['client'] = \
-                #Client.objects.filter(name=form.cleaned_data.get("name")) \
-                #| Client.objects.filter(phone=form.cleaned_data.get("phone")) | \
-               # Client.objects.filter(mail=form.cleaned_data.get("mail"))\
-                #| Client.objects.filter(pk=form.cleaned_data.get("item_id"))
+        if form.is_valid() and self.request.method == "GET":
+            if form.cleaned_data.get("name") or form.cleaned_data.get("phone") or form.cleaned_data.get("mail") or form.cleaned_data.get("item_id"):
+                context['client'] = \
+                    Client.objects.filter(name=form.cleaned_data.get("name")) \
+                    | Client.objects.filter(phone=form.cleaned_data.get("phone")) | \
+                    Client.objects.filter(mail=form.cleaned_data.get("mail"))\
+                    | Client.objects.filter(pk=form.cleaned_data.get("item_id"))
         return context
 
     def get_queryset(self):
-
+        filter_val = self.request.GET.get('filter', 'give-default-value')
         order_by = self.request.GET.get('order_by', 'id')
         self.sort = order_by
-        #filter_by = self.request.GET.get('filter_by', '')
+        order = self.request.GET.get('orderby', 'give-default-value')
         return Client.objects.all().order_by(order_by)
+
+        #filter_by = self.request.GET.get('filter_by', '')
+        #return Client.objects.all().order_by(order_by)
     #def get_ordering(self):
         #ordering = self.request.GET.get('ordering', 'id')
        # # validate ordering here
@@ -155,8 +161,6 @@ class AdminSubscriptions(ListView):
     pass
 
 
-class AdminEmployees(ListView):
-    pass
 
 
 class AdminTimetable(ListView):
@@ -216,6 +220,8 @@ class AdminClientCreate(CreateView):
 
     def form_invalid(self, form):
         self.form_class = form
+        for field in form.errors:
+            form[field].field.widget.attrs['class'] += ' is-invalid'
         messages.error(self.request, self.error_message)
         return super().form_invalid(form)
 
@@ -245,11 +251,184 @@ class AdminClientUpdate(UpdateView):
         context['bredcrumbs'] = 'Редактирование клиента'
         return context
 
-
     def get_success_url(self):
         return reverse('client_detail', kwargs={'pk': self.object.pk})
 
+    def form_invalid(self, form):
+        self.form_class = form
+        for field in form.errors:
+            form[field].field.widget.attrs['class'] += ' is-invalid'
+        return super().form_invalid(form)
 
+class AdminClientDelete(DeleteView):
+    model = Client
+    template_name = 'fitness/admin/client_update.html'
+    success_url = reverse_lazy('admin_clients')
+
+
+class AdminEmployees(ListView):
+    paginate_by = 3
+    model = Employee
+    template_name = 'fitness/admin/employees.html'
+    context_object_name = 'employee'
+    filter = ""
+    sort = ""
+
+    def get(self, *args, **kwargs):
+        resp = super().get(*args, **kwargs)
+        return resp
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['menu_admin'] = menu_admin
+        context['title'] = 'Сотрудники'
+        context['sort'] = self.sort
+        form = EmployeesForm(self.request.GET)
+        context['form'] = form
+
+        return context
+
+
+class AdminEmployeeSee(DetailView):
+    model = Employee
+    template_name = 'fitness/admin/employee_see.html'
+    context_object_name = 'employee'
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['menu_admin'] = menu_admin
+        context['title'] = 'Просмотр информации о сотруднике'
+        return context
+
+
+class AdminEmployeeCreate(CreateView):
+    form_class = EmployeeCreateForm
+    template_name = 'fitness/admin/employee_create.html'
+    # success_url = 'fitness/admin/clients'
+    context_object_name = 'employee'
+    model = Employee
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['menu_admin'] = menu_admin
+        context['title'] = 'Добавление сотрудника'
+        context['form'] = self.form_class
+        context['bredcrumbs'] = 'Добавление сотрудника'
+        context['roles'] = Role.objects.all()
+        return context
+
+
+    success_message = 'Doc successfully created!'
+    error_message = 'Введите поля формы корректно!'
+
+    def get_success_url(self):
+        return reverse('admin_employees')
+
+    def form_valid(self, form):
+
+        role_id = form.cleaned_data['id']
+        role = get_object_or_404(Role, pk=role_id)
+        employee = form.instance
+        employee.roles.add(role)
+        employee.save()
+        #form.instance.created_by = self.request.user
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        self.form_class = form
+        for field in form.errors:
+            form[field].field.widget.attrs['class'] += ' is-invalid'
+        messages.error(self.request, self.error_message)
+        return super().form_invalid(form)
+
+
+class AdminEmployeeUpdate(UpdateView):
+    model = Employee
+    template_name = 'fitness/admin/employee_update.html'
+    form_class = EmployeeCreateForm
+    context_object_name = 'employee'
+    roles = []
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+
+        context = super().get_context_data(**kwargs)
+        context['menu_admin'] = menu_admin
+        context['title'] = 'Редактирование сотрудника'
+        context['bredcrumbs'] = 'Редактирование сотрудника'
+        employee = Employee.objects.get(pk=self.kwargs.get('pk'))
+        self.roles = []
+        for role in employee.roles.all():
+            self.roles.append(role.id)
+        context['roles'] = Role.objects.exclude(pk__in=self.roles)
+        return context
+
+    def get_success_url(self):
+        return reverse('employee_detail', kwargs={'pk': self.object.pk})
+
+    def form_valid(self, form):
+        pass
+        #roles = form.cleaned_data['roles']
+        #employee = form.instance
+        #for role in roles:
+            #role = get_object_or_404(Role, pk=role)
+            #employee.roles.add(role)
+        #employee.save()
+        #form.instance.created_by = self.request.user
+        #return super().form_valid(form)
+
+
+    def form_invalid(self, form):
+        self.form_class = form
+        for field in form.errors:
+            form[field].field.widget.attrs['class'] += ' is-invalid'
+        return super().form_invalid(form)
+
+
+def add_role_view(request, pk):
+    if request.method == 'POST':
+        roles = request.POST.getlist('roles[]')
+        employee = Employee.objects.get(pk=pk)
+        for i in roles:
+            employee.roles.add(Role.objects.get(pk=i))
+    return redirect('employee_edit', pk=pk)
+
+
+def delete_role_view(request, pk):
+    if request.method == 'POST':
+        role_id = request.POST['role']
+        employee = Employee.objects.get(pk=pk)
+        role = Role.objects.get(pk=role_id)
+        employee.roles.remove(role)
+    return redirect('employee_edit', pk=pk)
+
+def employee_delete(request, pk):
+    if request.method == 'POST':
+        employee = Employee.objects.get(pk=pk)
+        employee.date_delete = datetime.now()
+        employee.save()
+    return redirect('employee_edit', pk=pk)
+
+
+#class AdminEmployeeEditRoles(UpdateView):
+    #model = Employee
+    #context_object_name = 'employee'
+
+   # form_class = EmployeeEditRoles
+    #def form_valid(self, form):
+      #  roles = self.form_class.cleaned_data['roles']
+       # employee = self.form_class
+       # for role in roles:
+           # role = get_object_or_404(Role, pk=role)
+           # print(role)
+           # employee.roles.add(role)
+       # employee.save()
+        #form.instance.created_by = self.request.user
+       # return reverse('employee_edit', kwargs={'pk': self.object.pk})
+
+
+class AdminEmployeeDelete(DeleteView):
+    model = Employee
+    template_name = 'fitness/admin/employee_update.html'
+    success_url = reverse_lazy('admin_employees')
 #def index(request):
 #    posts = Client.objects.all()
 #    context = {

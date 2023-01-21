@@ -1,0 +1,250 @@
+{% extends 'fitness/admin/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="modal fade" id="addRole"  tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Добавление должности</h5>
+
+                </div>
+                <div class="modal-body">
+                    <div class="container-lg">
+                        <form class="bg-light shadow p-3 px-4 rounded-3 ">
+                            <div class="row">
+                                <div class="form-group col-sm-2">
+                                    <label for="emp_id">Id</label>
+                                    <input type="text" id="emp_id" class="form-control" id="id_employee" >
+
+                                </div>
+                                <div class="form-group col-xl-5 ">
+                                    <div class="form-group ">
+                                        <label for="emp_name">Название</label>
+                                        <input type="text" id="emp_name" class="form-control">
+                                    </div>
+
+                                </div>
+                                <div class="form-group col-xl-5 mt-xl-0 mt-sm-2">
+                                    <label for="emp_value">Сотрудник</label>
+                                    <div class="input-group" id="price_from">
+
+                                        <input type="text" class="form-control " id="emp_value">
+                                        <button class="btn btn-danger " >
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                                             </svg>
+                                        </button>
+                                        <button class=" btn btn-warning rounded-end" >
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <circle cx="10" cy="10" r="7"></circle>
+                                                <line x1="21" y1="21" x2="15" y2="15"></line>
+                                             </svg>
+                                        </button>
+
+                                    </div> 
+                                </div>
+
+                            </div>
+                            <div class="d-flex flex-row-reverse mt-4">
+
+                                <div class="form-group  ">
+                                    <button type="button" class="btn btn-warning custom_butt ">Применить</button>
+                                
+                                </div>
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-danger custom_butt mx-3">Сбросить</button>
+
+                                
+                                </div>   
+                            </div>
+                        </form>
+                    
+                    
+                    </div> 
+
+                    <div class="container-lg ">
+                        <form class="bg-light shadow p-3 px-4 rounded-3 mt-4 overflow-auto">
+                            <table id="table_modal" class="table table-hover mt-1">
+                                <thead>
+                                    <tr>
+                                      <th scope="col"><a href="" class=" text-decoration-none text-warning link_hover"><span class="fw-bold">&#8645;&nbsp;Id</span></a></th>
+                                      <th scope="col"><a href="" class=" text-decoration-none text-black link_hover"><span class="fw-bold">&#8645;&nbsp;Название</span></a></th>
+                                      <th scope="col"><a href="" class=" text-decoration-none text-black link_hover"><span class="fw-bold">&#8645;&nbsp;Место работы</span></a></th>
+                                      <th scope="col">Выбор</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for role in roles %}
+                                        <tr>
+                                            <th data-id="{{role.id}}" scope="row">{{role.id}}</th>
+                                            <td><a class="text-decoration-none " href="admin_role_see.html">{{role.name}}</a></td>
+                                            <td><a class="text-decoration-none " href="admin_hall_see.html">{{role.place}}</a></td>
+                                            <td><input id="checkbox" class="form-check-input" type="checkbox"></td>
+                                        
+                                        </tr>
+                                    {% endfor %}
+                                   
+                                </tbody>
+                            </table>
+                            <nav aria-label="page_navigation mt-5">
+                                <ul class="pagination justify-content-center ">
+                                  <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                      <span aria-hidden="true">&laquo;</span>
+                                    
+                                    </a>
+                                  </li>
+                                  <li class="page-item "><a class="page-link" href="#">1</a></li>
+                                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                  <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                      <span aria-hidden="true">&raquo;</span>
+                                    
+                                    </a>
+                                  </li>
+                                </ul>
+                            </nav>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-danger custom_butt" data-bs-target="#exitModal" data-bs-toggle="modal" >Отменить</button>
+                    <button type="button" class="button_save btn btn-warning custom_butt" data-bs-dismiss="modal" aria-label="Close">Сохранить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% block breadcrumb %}
+    <div class="container-lg mt-4 pb-4">
+        <nav aria-label="breadcrumb" class="bg-light shadow rounded-3 py-3">
+            <div class="row px-3 ">
+                <ol class="breadcrumb  col-xl-6 col-md-11 col-sm-12  px-3 px-sm-2 my-auto">
+                    <li class="breadcrumb-item">Кабинет администратора</li>
+                    <li class="breadcrumb-item"><a class="text-decoration-none" href="admin_employees.html">Сотрудники</a></li>
+                    <li class="breadcrumb-item">Добавление сотрудника</li>
+                </ol>
+
+            </div>
+        </nav>    
+          
+    </div> 
+    {% endblock %}
+    <div class="container-lg">
+        <form class="add_employee bg-light shadow p-3 px-4 rounded-3" method="POST">
+            {% csrf_token %}
+            <div class="row">
+               
+               
+                
+                <div class="form-group col-md-6 col-sm-12 mt-xl-0 mt-sm-2">
+                    <div>
+                        <label for="name">ФИО</label>
+                        {{form.name}}
+                    </div>
+                    <div class="qualification mt-2">
+                        <label for="form-select"></label>
+                        {{form.place_of_work}}
+                    </div>  
+                    <div class=" mt-2 ">
+                        <label for="comment" >Спортивная категория</label>
+                        {{form.sport_category}}
+                    </div>
+                </div>
+               <div class=" col-md-6 mt-xl-0 mt-sm-2">
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <label for="phone">Телефон</label>
+                            {{form.phone}}
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="birthday">Дата рождения</label>
+                            {{form.date_of_birth}}
+                        
+                        </div>
+                    </div>
+                    <div class="mt-2 ">
+                        <label for="mail">Email</label>
+                       {{form.mail}}
+                    </div>
+                    <div class="form-check form-switch mt-md-5 mt-sm-3 ">
+                        {{form.is_hourly}}
+                        <label class="form-check-label" for="is_hourly"> Почасовой работник</label>
+                      </div>
+                    
+  
+               </div>
+               <div class="form-group mt-2 col-12">
+                    <label for="text_for_visit" >Текст для визита</label>
+                    {{form.text_for_visit}}
+                </div>
+               <div class="form-group mt-2 col-12">
+                    <label for="comment" >Дополнительная информация</label>
+                    {{form.comment}}
+                </div>
+               
+                
+                <div class="d-flex flex-row-reverse mt-4">
+                
+                    <div class="form-group  ">
+                        <button type="submit" class="btn btn-warning custom_butt ">Сохранить</button>
+
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-danger custom_butt mx-2">Отменить</button>
+                    </div>   
+                </div>
+            </div> 
+        </form>
+    </div>
+    <div class="container-lg mt-4">
+        <form class="bg-light shadow p-3 px-4 rounded-3 overflow-auto">
+            <div class="row">    
+               <div class="form-group col-12 text-center  ">
+                    <span class="client_id fs-3">Должности сотрудника</span>
+                </div>
+                
+               
+                
+            </div>
+            <table class="table table-hover mt-4 align-middle" id="table_with_js">
+                <thead>
+                    <tr>
+                      <th scope="col"><a href="" class=" text-decoration-none text-warning link_hover"><span class="fw-bold">&#8645;&nbsp;Id</span> </a></th>
+                      <th scope="col"><a href="" class=" text-decoration-none text-black link_hover"><span class="fw-bold">&#8645;&nbsp;Название</span></a></th>
+                      <th scope="col"><a href="" class=" text-decoration-none text-black link_hover"><span class="fw-bold">&#8645;&nbsp;Место&nbsp;работы</span></a></th>
+                      <th scope="col"><a href="" class=" text-decoration-none text-black link_hover"></a></th>
+                      
+                      
+                      
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+
+                      
+                      
+                      
+                    </tr>
+                    
+                    
+                </tbody>
+            </table>
+            <div class="form-group col-12 mt-3 text-end">
+                <button type="button" class="btn btn-primary custom_butt " data-bs-toggle="modal" data-bs-target="#addRole" >Добавить</button>
+
+            </div>
+           
+        </form>
+        
+    </div>
+    <script type="text/javascript" src="{% static 'fitness/js/jquery-3.6.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'fitness/js/admin/employee/add.js' %}"></script>
+    <script type="text/javascript" src="{% static 'fitness/js/ajax/admin/employee/add.js' %}"></script>
+{% endblock %}
