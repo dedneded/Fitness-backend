@@ -1,0 +1,135 @@
+{% extends 'fitness/admin/base.html' %}
+{% load static %}
+{% block content %}
+
+    {% block breadcrumb %}
+        <div class="container-lg mt-4 pb-4">
+            <nav aria-label="breadcrumb" class="bg-light shadow rounded-3 py-3">
+                <div class="row px-3 ">
+                    <ol class="breadcrumb  col-xl-6  col-sm-11  px-3 px-sm-2 my-auto">
+                        <li class="breadcrumb-item">Кабинет администратора</li>
+                        <li class="breadcrumb-item"><a class=" text-decoration-none" href="admin_halls.html">Залы</a></li>
+                        <li class="breadcrumb-item">{{hall.name}}</li>
+                    </ol>
+                    <a class = " text-end col-xl-6  col-sm-1 " href="{% url 'hall_edit'  pk=hall.pk %}">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="28" height="28" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
+                            <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path>
+                            <path d="M16 5l3 3"></path>
+                         </svg>
+                    </a>
+                </div>
+            </nav>    
+
+        </div> 
+    {% endblock %}
+    <section class="personal_data ">
+        <div class="container-lg ">
+          <div class="row ">
+            <div class="col-lg-4 h-100 ">
+              <div class="card  bg-light shadow border-0">
+                <div class="card-body text-center photo">
+                  <img src="{{ hall.photos.first.photo_path.url }}" class=" rounded img-fluid" />
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-8 ">
+              <div class="card bg-light shadow mb-4 border-0">
+                <div class="card-body ">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0 title">Название</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{hall.name}}</p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0 title">Вместимость (человек)</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{hall.max_clients}} </p>
+                    </div>
+                  </div>
+                  <hr>
+                 
+                    
+                   
+                  <div class="row">
+                      <div class="col-sm-3">
+                          <p class="mb-0 title">Расписание будни</p>
+                      </div>
+                      <div class="col-sm-9">
+                          <p class="text-muted mb-0">{{hall.start_work_weekends}} - {{hall.end_work_weekends}}</p>
+                      </div>
+                  </div>
+                  <hr>
+            
+                  <div class="row">
+                      <div class="col-sm-3">
+                          <p class="mb-0 title">Расписание выходные</p>
+                      </div>
+                      <div class="col-sm-9">
+                          <p class="text-muted mb-0">{{hall.start_work_holidays}} - {{hall.end_work_holidays}}</p>
+                      </div>
+                  </div>
+                  <hr>
+                           
+
+                     
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0 title">Описание</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{hall.description}}</p>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+    </section> 
+    <div class="container-lg">
+        <form class="bg-light shadow p-3 px-4 rounded-3 ">
+            <div class="form-group col-12 text-center mt-2 mb-2">
+                   
+                <span class="client_id fs-3">Фотографии зала</span>
+            </div>
+            
+            <table class="table  align-middle">
+                <thead>
+                    <tr>
+                      
+                      <th scope="col"><a href="" class=" text-decoration-none text-black "><span class="fw-bold"></span> </a></th>
+                      <th scope="col"><a href="" class=" text-decoration-none text-black "><span class="fw-bold"></span> </a></th>
+                      <th scope="col"></th>
+                     
+                      
+                      
+                    </tr>
+                </thead>
+                <tbody>
+
+                        <tr>
+                            {% for i in hall.photos.all|slice:":3"  %}
+                                <td class="w-25"><a class="text-decoration-none text-black" href="">
+                                  <img src="{{ i.photo_path.url }}" class=" img-fluid rounded-3 " alt="">
+                                </a></td>
+                                
+                            {% endfor %}
+
+                        </tr>
+                                              
+                </tbody>
+            </table>
+            
+        </form>
+    </div>
+{% endblock %}

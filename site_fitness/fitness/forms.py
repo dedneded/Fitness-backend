@@ -135,3 +135,65 @@ class EmployeeCreateForm(forms.ModelForm):
         self.fields['sport_category'].required = False
 
 
+class HallsForm(forms.ModelForm):
+
+    class Meta:
+        model = Employee
+        fields = ['name']
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control', 'name': 'filter', 'id': 'name'}),
+        }
+
+    item_id = forms.IntegerField(widget=forms.NumberInput(attrs={'id': 'id_hall', 'class': 'form-control'}))
+    start = forms.DateTimeField(widget=forms.DateInput(attrs={'class': 'form-control', 'name': 'start', 'id': 'start',
+                                                    'type': 'date'}))
+    end = forms.DateTimeField(widget=forms.DateInput(attrs={'class': 'form-control', 'name': 'end', 'id': 'end',
+                                   'type': 'date'}))
+
+    def __init__(self, *args, **kwargs):
+        # first call parent's constructor
+        super(HallsForm, self).__init__(*args, **kwargs)
+        # there's a `fields` property now
+        self.fields['name'].required = False
+        self.fields['start'].required = False
+        self.fields['end'].required = False
+        self.fields['item_id'].required = False
+
+
+class HallCreateForm(forms.ModelForm):
+
+    class Meta:
+        model = Service
+        fields = ['name', 'description', 'max_clients', 'start_work_holidays', 'end_work_holidays','start_work_weekends', 'end_work_weekends',]
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control',  'id': 'name'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'id': 'description', 'rows': '3'}),
+            'max_clients': forms.NumberInput(attrs={'class': 'form-control', 'id': 'max_clients'}),
+            'start_work_holidays': forms.TimeInput(attrs={'class': 'form-control',  'id': 'start_holidays',
+                                                    'type': 'time'}),
+            'end_work_holidays': forms.TimeInput(attrs={'class': 'form-control',  'id': 'end_holidays',
+                       'type': 'time'}),
+            'start_work_weekends': forms.TimeInput(attrs={'class': 'form-control', 'id': 'start_weekends',
+                                                        'type': 'time'}),
+            'end_work_weekends': forms.TimeInput(attrs={'class': 'form-control', 'id': 'end_weekends',
+                                                        'type': 'time'}),
+        }
+
+    item_id = forms.IntegerField(widget=forms.NumberInput(attrs={'id': 'id_hall', 'class': 'form-control'}))
+
+
+    def __init__(self, *args, **kwargs):
+        # first call parent's constructor
+        super(HallCreateForm, self).__init__(*args, **kwargs)
+        # there's a `fields` property now
+        self.fields['name'].required = False
+        self.fields['start_work_holidays'].required = False
+        self.fields['end_work_holidays'].required = False
+        self.fields['start_work_weekends'].required = False
+        self.fields['end_work_weekends'].required = False
+        self.fields['item_id'].required = False
+        self.fields['description'].required = False
+        self.fields['max_clients'].required = False
+

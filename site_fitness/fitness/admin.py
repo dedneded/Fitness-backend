@@ -47,6 +47,10 @@ class RoleAdmin(admin.ModelAdmin):
     list_display = ('id', 'name')
     list_display_links = ('id', 'name')
 
+class ServiceTimetableAdmin(admin.ModelAdmin):
+    list_display = ('id',)
+    list_display_links = ('id',)
+
 
 admin.site.register(Client, ClientAdmin)
 admin.site.register(Service, ServiceAdmin)
@@ -57,3 +61,4 @@ admin.site.register(Subscription, SubscriptionAdmin)
 admin.site.register(Feedback, FeedbackAdmin)
 admin.site.register(Permission, PermissionAdmin)
 admin.site.register(Role, RoleAdmin)
+admin.site.register(ServiceTimetable, ServiceTimetableAdmin)

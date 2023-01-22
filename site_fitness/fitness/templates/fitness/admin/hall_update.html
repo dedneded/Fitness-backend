@@ -1,0 +1,195 @@
+{% extends 'fitness/admin/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="modal fade" id="deleteModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+
+                </div>
+                <div class="modal-body">
+                       <span>Вы действительно хотите удалить зал &laquo;{{hall.name}}&raquo;?</span>
+                </div>
+                <form action="{% url 'hall_delete' pk=hall.pk %}" method="POST">
+                    {% csrf_token %}
+                    <div class="modal-footer">
+                        <button type="submit" value="Confirm" class="btn btn-danger custom_butt" data-bs-dismiss="modal" aria-label="Close">Да</button>
+                        <button type="button" class="btn btn-warning custom_butt" data-bs-target="#exampleModal" data-bs-toggle="modal">Назад</button>
+                    </div>
+                </form>
+
+            </div>
+       </div>
+    </div>
+    {% block breadcrumb %}
+        <div class="container-lg mt-4 pb-4">
+            <nav aria-label="breadcrumb" class="bg-light shadow rounded-3 py-3">
+                <div class="row px-3 ">
+                    <ol class="breadcrumb  col-xl-6 col-sm-11  px-3 px-sm-2 my-auto">
+                        <li class="breadcrumb-item">Кабинет администратора</li>
+                        <li class="breadcrumb-item"><a class="text-decoration-none" href="admin_halls.html">Залы</a></li>
+                        <li class="breadcrumb-item">Редактирование зала &laquo;{{hall.name}}&laquo;</li>
+                    </ol>
+                    <a data-bs-target="#deleteModal" data-bs-toggle="modal" class = " text-end col-xl-6 col-sm-1 text-danger danger_hover" href="">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <line x1="4" y1="7" x2="20" y2="7"></line>
+                            <line x1="10" y1="11" x2="10" y2="17"></line>
+                            <line x1="14" y1="11" x2="14" y2="17"></line>
+                            <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+                            <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+                        </svg>
+                    </a>
+                </div>
+            </nav>    
+
+        </div> 
+    {% endblock %}
+    
+    <div class="container-lg">
+        <form class="bg-light shadow p-3 px-4 rounded-3 " method="POST">
+            {% csrf_token %}
+            
+            <div class="row">
+               
+                <div class="form-group col-12 text-center mb-3">
+                    <label class="fs-3" for="client_id">id: </label>
+                    <span class="client_id fs-3">{{hall.id}}</span>
+                </div>
+                
+                <div class="form-group  col-12">
+                    <label for="name">Название</label>
+                    {{form.name}}
+                    <div class="row mt-2">
+                        
+                               
+                        <div class="form-group col-md-6 col-sm-12">
+                            <label for="time_from_weekdays_value">Расписание в будни</label>
+                            <div class="input-group" id="time_weekdays">
+                                <span class="input-group-text rounded-start" id="start_weekends">от</span>
+                                {{form.start_work_weekends}}
+                                <span class="input-group-text " id="end_weekends">до</span>
+                                {{form.end_work_weekends}}
+                            </div> 
+            
+            
+                        </div>  
+                        <div class="form-group col-md-6 col-sm-12 mt-xl-0 mt-sm-2">
+                            <label for="time_from_weekends_value">Расписание в выходные</label>
+                            <div class="input-group" id="time_weekends">
+                                <span class="input-group-text rounded-start" id="start_holidays">от</span>
+                                {{form.start_work_holidays}}
+                                <span class="input-group-text " id="end_holidays">до</span>
+                                {{form.end_work_holidays}}
+                            </div>
+                        
+                        </div>   
+                        
+                    </div>
+                    <div class="row mt-2" >
+                        <div class="form-group col-md-6 col-sm-12">
+                            <label for="hall_max">Вместимость (кол-во человек)</label>
+                            {{form.max_clients}}
+                        </div>
+                        
+                        
+                        <div class="form-group col-md-6 col-sm-12 mt-md-0 mt-sm-2">
+                            <label for="exampleFormControlTextarea1">Описание</label>
+                            {{form.description}}
+                        </div>
+                    </div>
+                   
+                    
+                </div>
+                
+               
+                
+                <div class="d-flex flex-row-reverse mt-4">
+                
+                    <div class="form-group  ">
+                        <button type="submit"  value="Update" class="btn btn-warning custom_butt ">Сохранить</button>
+
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-danger custom_butt mx-2">Отменить</button>
+                        
+
+                    </div>   
+                </div>
+            </div>
+           
+        </form>
+    </div>
+    <div class="container-lg mt-4">
+        <form class="bg-light shadow p-3 px-4 rounded-3">
+
+
+            <div class="row">            
+            
+                <div class="form-group col-12 text-center ">
+                
+                    <span class="client_id fs-3">Фотографии зала</span>
+                </div>
+                <div class="container">
+                    <form class="bg-light shadow p-3 px-4 rounded-3 mt-4">
+
+
+                        <table class="table table-hover align-middle">
+                            <thead>
+                                <tr>
+                                
+                                  <th scope="col"><a href="" class=" text-decoration-none text-black "><span class="fw-bold"></span> </a></th>
+                                  <th scope="col"><a href="" class=" text-decoration-none text-black "><span class="fw-bold"></span> </a></th>
+                                  <th scope="col"></th>
+                                
+                                
+                                
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in hall.photos.all %}
+
+                                <tr>
+                                
+                                    <td class="w-25"><a class="text-decoration-none text-black" href="">
+                                      <img src={{i.photo_path.url}} class="border border-5 border-warning img-fluid rounded-3 " alt="">
+                                    </a></td>
+                                    <td  class=" text-center"><a class="text-decoration-none text-black link_hover" href="">
+                                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square-arrow-down" width="45" height="45" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                          <path d="M8 12l4 4l4 -4"></path>
+                                          <path d="M12 8v8"></path>
+                                          <path d="M6.667 4h10.666a2.667 2.667 0 0 1 2.667 2.667v10.666a2.667 2.667 0 0 1 -2.667 2.667h-10.666a2.667 2.667 0 0 1 -2.667 -2.667v-10.666a2.667 2.667 0 0 1 2.667 -2.667z"></path>
+                                       </svg>
+                                      </a>
+                                       <a class="text-black link_hover" href="">
+                                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square-arrow-up" width="45" height="45" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                              <path d="M16 12l-4 -4l-4 4"></path>
+                                              <path d="M12 16v-8"></path>
+                                              <path d="M17.333 20h-10.666a2.667 2.667 0 0 1 -2.667 -2.667v-10.666a2.667 2.667 0 0 1 2.667 -2.667h10.666a2.667 2.667 0 0 1 2.667 2.667v10.666a2.667 2.667 0 0 1 -2.667 2.667z"></path>
+                                           </svg>
+                                       </a>
+  
+                                    </td>
+                                    <td class="w-25" ></td>
+  
+                                  </tr>
+                                {% endfor %}
+                                
+                            </tbody>
+                        </table>
+                        <div class="form-group col-12 mt-3 text-end">
+                            <button type="button" class="btn btn-primary custom_butt ">Добавить</button>
+
+                        </div>
+                       
+                    </form>
+                </div>
+            </div>
+        
+        </form>
+    </div>    
+                        
+{% endblock %}

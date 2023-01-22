@@ -1,0 +1,157 @@
+{% extends 'fitness/admin/base.html' %}
+{% load static %}
+{% block content %}
+    {% block breadcrumb %}
+        <div class="container-lg mt-4 pb-4">
+            <nav aria-label="breadcrumb" class="bg-light shadow rounded-3 py-3">
+                <div class="row px-3 ">
+                    <ol class="breadcrumb  col-xl-6 col-sm-11  px-3 px-sm-2 my-auto">
+                        <li class="breadcrumb-item">Кабинет администратора</li>
+                        <li class="breadcrumb-item">Залы</li>
+                    </ol>
+                    <a class = " text-end col-xl-6 col-sm-1 " href="admin_hall.html">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                         </svg>
+                    </a>
+                </div>
+            </nav>
+
+        </div>
+    {% endblock %}
+    {% block filter %}
+        <div class="container-lg">
+            <form class="bg-light shadow p-3 px-4 rounded-3">
+                <div class="row">
+                    <div class="form-group col-xxl-5 col-xl-3">
+                        <label for="id_hall">Id</label>
+                        {{form.item_id}}
+                        
+
+                    </div>
+                    <div class="form-group col-xxl-5 col-xl-9">
+                        <label for="name">Название</label>
+                        {{form.name}}
+                    </div>
+
+                    <div class="form-group col-xxl-3 col-xl-6 mt-xl-2">
+                        <label for="price_from_block">Расписание в будни</label>
+                        <div class="input-group" id="time_weekdays">
+
+                            <span class="input-group-text rounded-start" id="time_from_weekdays">от</span>
+                            {{form.start}}
+                            <span class="input-group-text " id="time_until_weekdays">до</span>
+                            {{form.end}}
+
+
+                        </div>
+
+
+                    </div>
+                    <div class="form-group col-xxl-3 col-xl-6 mt-xl-2">
+                        <label for="price_from_block">Расписание в выходные</label>
+                        <div class="input-group" id="time_weekends">
+
+                            <span class="input-group-text rounded-start" id="time_from_weekends">от</span>
+                            <input type="time" class="form-control"  aria-describedby="price_from">
+                            <span class="input-group-text " id="time_until_weekends">до</span>
+                            <input type="time" class="form-control"  aria-describedby="price_until">
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+                <div class="d-flex flex-row-reverse mt-4">
+
+                    <div class="form-group  ">
+                        <button type="button" class="btn btn-warning custom_butt ">Применить</button>
+
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-danger custom_butt mx-3">Сбросить</button>
+
+
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    {% endblock %}
+    {% block table %}
+        <div class="container-lg  ">
+                <form class="bg-light shadow p-3 px-4 rounded-3 mt-4 overflow-auto">
+
+
+                    <table class="table table-hover ">
+                        <thead>
+                            <tr>
+                                <th scope="col"><a href="" class=" text-decoration-none text-warning link_hover"><span class="fw-bold">&#8645;&nbsp;Id</span></a></th>
+                                <th scope="col"><a href="" class=" text-decoration-none text-black link_hover"><span class="fw-bold">&#8645;&nbsp;Название</span></a></th>
+                                <th scope="col"><a href="" class=" text-decoration-none text-black link_hover"><span class="fw-bold">&#8645;&nbsp;Расписание</span></a></th>
+                                <th scope="col"><a href="" class=" text-decoration-none text-black link_hover"><span class="fw-bold">&#8645;&nbsp;Расписание&nbsp;выходные</span></a></th>
+                                <th scope="col"><a href="" class=" text-decoration-none text-black link_hover"><span class="fw-bold">&#8645;&nbsp;Количество&nbsp;направлений</span></a></th>
+                                <th scope="col"><a href="" class=" text-decoration-none text-black link_hover"><span class="fw-bold">&#8645;&nbsp;Max&nbsp;посетителей</span></a></th>
+                                <th scope="col"><a href="" class=" text-decoration-none text-black link_hover"><span class="fw-bold">&#8645;&nbsp;Рейтинг</span></a></th>
+                                <th scope="col"><a href="" class=" text-decoration-none text-black link_hover"><span class="fw-bold">&#8645;&nbsp;Количество&nbsp;посещений</span></a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in halls %}
+                               
+                                    <tr>
+                                      <th scope="row">{{i.id}}</th>
+                                      <td><a class="text-decoration-none  " href="{% url 'hall_detail' pk=i.pk %}">{{i.name}}</a></td>
+                                      
+                                    <td><a class="text-decoration-none " href="{% url 'hall_detail' pk=i.pk %}">{{i.start_work_weekends}} - {{i.end_work_weekends}}</a></td>
+                                           
+                                    <td><a class="text-decoration-none " href="{% url 'hall_detail' pk=i.pk %}">{{i.start_work_holidays}} - {{i.end_work_holidays}}</a></td>
+                                       
+
+                                       
+                                      <!-- <td><a class="text-decoration-none text-black" href="admin_hall.html">10:00 - 18:00</a></td> -->
+                                      <td><a class="text-decoration-none " href="{% url 'hall_detail' pk=i.pk %}">6</a></td>
+                                      <td><a class="text-decoration-none " href="{% url 'hall_detail' pk=i.pk %}">{{i.max_clients}}</a></td>
+                                      <td><a class="text-decoration-none " href="{% url 'hall_detail' pk=i.pk %}"></a></td>
+                                      <td><a class="text-decoration-none " href="{% url 'hall_detail' pk=i.pk %}"></a></td>
+
+
+                                    </tr>
+                                
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                    <nav aria-label="page_navigation mt-5">
+                        <ul class="pagination justify-content-center ">
+                            {% for p in page_obj.paginator.page_range %}
+                                {% if page_obj.number == p%}
+                                <li class="page-item active"><a class="page-link" href="#">{{ p }}</a></li>
+                                {% else %}
+                                <li class="page-item ">
+                                     
+                                        <a class="page-link" href="?page={{p}}">{{p}}</a>
+        
+                                    
+        
+                                </li>
+                                {% endif %}
+                                
+                           
+                            {% endfor %}
+                            
+                        </ul>
+                    </nav>
+                </form>
+            </div>
+
+
+            </form>
+        </div>
+    {% endblock %}
+{% endblock %}

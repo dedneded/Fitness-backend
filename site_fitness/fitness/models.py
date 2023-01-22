@@ -27,7 +27,10 @@ class Service(models.Model):
     visits = models.ManyToManyField('Visit', through='VisitService', null=True, blank=True)
     subscriptions = models.ManyToManyField('Subscription', null=True, blank=True)
     discounts = models.ManyToManyField('Discount', through='DiscountService', null=True, blank=True)
-
+    start_work_weekends = models.TimeField(null=True, blank=True)
+    end_work_weekends = models.TimeField(null=True, blank=True)
+    start_work_holidays = models.TimeField(null=True, blank=True)
+    end_work_holidays = models.TimeField(null=True, blank=True)
 
     def __str__(self):
         return self.name

@@ -145,8 +145,6 @@ class AdminVisits(ListView):
     pass
 
 
-class AdminHalls(ListView):
-    pass
 
 
 class AdminSportServices(ListView):
@@ -407,73 +405,75 @@ def employee_delete(request, pk):
         employee.save()
     return redirect('employee_edit', pk=pk)
 
+class AdminHalls(ListView):
 
-#class AdminEmployeeEditRoles(UpdateView):
-    #model = Employee
-    #context_object_name = 'employee'
-
-   # form_class = EmployeeEditRoles
-    #def form_valid(self, form):
-      #  roles = self.form_class.cleaned_data['roles']
-       # employee = self.form_class
-       # for role in roles:
-           # role = get_object_or_404(Role, pk=role)
-           # print(role)
-           # employee.roles.add(role)
-       # employee.save()
-        #form.instance.created_by = self.request.user
-       # return reverse('employee_edit', kwargs={'pk': self.object.pk})
+    model = Service
+    template_name = 'fitness/admin/halls.html'
+    context_object_name = 'halls'
+    queryset = Service.objects.filter(parent=None)
+    paginate_by = 3
 
 
-class AdminEmployeeDelete(DeleteView):
-    model = Employee
-    template_name = 'fitness/admin/employee_update.html'
-    success_url = reverse_lazy('admin_employees')
-#def index(request):
-#    posts = Client.objects.all()
-#    context = {
-#        'title': 'Главная страница',
-#        'menu': menu,
-#        'posts': posts
-#    }
-#    return render(request, 'fitness/index.html', context=context)
+    def get(self, *args, **kwargs):
+        resp = super().get(*args, **kwargs)
+        return resp
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['menu_admin'] = menu_admin
+        context['title'] = 'Залы'
+        form = HallsForm(self.request.GET)
+        context['form'] = form
+        context['timetables'] = ServiceTimetable.objects.all()
+        return context
 
 
-#def halls(request):
-#    return HttpResponse("<h1>Залы</h1>")
+class AdminHallSee(DetailView):
+    model = Service
+    template_name = 'fitness/admin/hall_see.html'
+    context_object_name = 'hall'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['menu_admin'] = menu_admin
+        context['title'] = 'Просмотр информации о зале'
+        context['timetables'] = ServiceTimetable.objects.all()
+        return context
 
 
-#def trainers(request):
-#    return HttpResponse("<h1>Тренеры</h1>")
+class AdminHallUpdate(UpdateView):
+    model = Service
+    template_name = 'fitness/admin/hall_update.html'
+    form_class = HallCreateForm
+    context_object_name = 'hall'
 
 
-def reviews(request):
-    return HttpResponse("<h1>Отзывы</h1>")
+    def get_context_data(self, *, object_list=None, **kwargs):
 
-def sales(request):
-    return HttpResponse("<h1>Скидки</h1>")
+        context = super().get_context_data(**kwargs)
+        context['menu_admin'] = menu_admin
+        context['title'] = 'Редактирование зала'
+        context['timetables'] = ServiceTimetable.objects.all()
 
+        return context
 
-#def subscriptions(request):
-#    return HttpResponse("<h1>Абонементы</h1>")
-
-
-def login(request):
-    return HttpResponse("<h1>Вход в лк</h1>")
+    def get_success_url(self):
+        return reverse('hall_detail', kwargs={'pk': self.object.pk})
 
 
-def categories(request, catid):
-    if request.POST:
-        print(request.POST)
-    return HttpResponse(f"<h1>Страница приложения fitness</h1><p>{catid}</p>")
+    def form_invalid(self, form):
+        self.form_class = form
+        for field in form.errors:
+            form[field].field.widget.attrs['class'] += ' is-invalid'
+        return super().form_invalid(form)
 
 
-def archive(request, year):
-    if int(year) > 2022:
-        raise Http404()
-    if int(year) == 2020:
-        return redirect('home', permanent=True)
-    return HttpResponse(f"<h1>Архив по годам</h1><p>{year}</p>")
+def hall_delete(request, pk):
+    if request.method == 'POST':
+        hall = Service.objects.get(pk=pk)
+        hall.date_delete = datetime.now()
+        hall.save()
+    return redirect('hall_edit', pk=pk)
 
 
 def pageNotFound(request, exception):
