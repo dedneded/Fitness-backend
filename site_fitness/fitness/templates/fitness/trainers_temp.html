@@ -10,7 +10,7 @@
                     <article onclick="location.href='trainer.html';" class="trainer">
                         <img  src="{{ i.photo_path.url }}" alt=""  max-width: 100%; height="245";/>
                         <div class="trainer__content">
-                            <div class="trainer__title">Тренер по самбо</div>
+                            <div class="trainer__title">{{i.roles.first.name}}</div>
                             <div class="trainer__subtitle">{{ i.name }}</div>
                             <a href="trainer.html" class="trainer__content button">Подробнее</a>
 

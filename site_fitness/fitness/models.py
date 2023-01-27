@@ -1,6 +1,9 @@
+from django.contrib.auth.models import AbstractUser
 from django.contrib.postgres.fields import ArrayField
-
+from phonenumber_field.modelfields import PhoneNumberField
 from django.db import models
+from .managers import CustomUserManager
+
 
 
 class Service(models.Model):
@@ -96,6 +99,7 @@ class Client(models.Model):
     comment = models.TextField(null=True, blank=True)
     subscriptions = models.ManyToManyField('Subscription', through='ClientSubscription', null=True, blank=True)
     groups = models.ManyToManyField('Group', null=True, blank=True)
+    passwd = models.CharField(max_length=255, null=True, blank=True)
     def __str__(self):
         return self.name
     class Meta:
@@ -215,3 +219,12 @@ class GroupTimetable(models.Model):
     start = models.DateTimeField()
     end = models.DateTimeField()
     group = models.ForeignKey('Group', on_delete=models.CASCADE)
+
+
+class CustomUser(AbstractUser):
+    username = None
+    phone = PhoneNumberField(null=False, blank=False, unique=True, region='RU', verbose_name='Номер телефона')
+    date_of_birth = models.DateField(verbose_name='Дата рождения')
+    USERNAME_FIELD = 'phone'
+    REQUIRED_FIELDS = []
+    objects = CustomUserManager()

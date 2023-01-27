@@ -1,4 +1,7 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+
 from .models import *
 
 
@@ -45,7 +48,7 @@ class ClientCreateForm(forms.ModelForm):
             'name': forms.TextInput(attrs={'class': 'form-control', 'name': 'name', 'id': 'name'}),
             'phone': forms.TextInput(attrs={'class': 'form-control', 'name': 'phone', 'id': 'phone'}),
             'mail': forms.TextInput(attrs={'class': 'form-control', 'name': 'mail', 'id': 'mail'}),
-            'date_of_birth': forms.DateInput(attrs={'class': 'form-control', 'name': 'mail', 'id': 'date_of_birth'}),
+            'date_of_birth': forms.DateInput(attrs={'class': 'form-control', 'name': 'mail', 'id': 'date_of_birth', 'type':'date'}),
             'comment': forms.Textarea(attrs={'class': 'form-control', 'name': 'mail', 'id': 'date_of_birth', 'rows': '6' }),
 
 
@@ -196,4 +199,20 @@ class HallCreateForm(forms.ModelForm):
         self.fields['item_id'].required = False
         self.fields['description'].required = False
         self.fields['max_clients'].required = False
+
+
+#class UserCreateForm(UserCreationForm):
+   # username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'form__phone phone', 'type': 'tel', 'placeholder':'+7(___)___-__-__', 'size':'20'}))
+    #password1 = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'form__phone phone', 'type':'password', 'placeholder':'Пароль', 'size':'20'}))
+    #password2 = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'form__phone phone', 'type': 'password', 'placeholder': 'Пароль', 'size': '20'}))
+    #mob = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form__phone phone','placeholder': 'Телефон', 'size': '20', 'max_length':'11',}))
+    #class Meta:
+        #model = User
+        #fields = ['username', 'password1', 'password2', 'mob']
+        #widgets = {
+            #'username': forms.TextInput(attrs={'class': 'form__phone phone', 'type': 'tel', 'placeholder':'+7(___)___-__-__', 'size':'20'}),
+            #'password1': forms.TextInput(attrs={'class': 'form__phone phone', 'type':'password', 'placeholder':'Пароль', 'size':'20'}),
+            #'password2': forms.TextInput(attrs={'class': 'form__phone phone', 'type': 'password', 'placeholder': 'Пароль', 'size': '20'}),
+        #}
+
 

@@ -1,5 +1,5 @@
 from django.contrib import admin
-
+from django.contrib.auth.admin import UserAdmin
 from .models import *
 
 
@@ -52,6 +52,29 @@ class ServiceTimetableAdmin(admin.ModelAdmin):
     list_display_links = ('id',)
 
 
+class CustomUserAdmin(UserAdmin):
+    model = CustomUser
+    list_display = ('phone',)
+    ordering = ('phone',)
+
+    add_fieldsets = (
+        (None, {
+            'fields': (
+                'phone', 'first_name', 'last_name', 'password1', 'password2', 'groups', 'is_superuser', 'is_staff'
+            )
+        }),
+    )
+
+    fieldsets = (
+        (None, {
+            "fields": (
+                ('phone', 'first_name', 'last_name', 'password', 'groups', 'is_superuser', 'is_staff')
+            ),
+        }),
+    )
+
+
+admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(Client, ClientAdmin)
 admin.site.register(Service, ServiceAdmin)
 admin.site.register(ServicePhoto, ServicePhotoAdmin)

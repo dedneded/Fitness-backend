@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'fitness.apps.FitnessConfig',
 
+
 ]
+AUTH_USER_MODEL = 'fitness.CustomUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

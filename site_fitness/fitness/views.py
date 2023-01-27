@@ -13,10 +13,10 @@ from .utils import *
 menu = [{'title': "Главная", 'url_name': 'home'},
         {'title': "Залы", 'url_name': 'halls'},
         {'title': "Тренеры", 'url_name': 'trainers'},
-        {'title': "Отзывы", 'url_name': 'reviews'},
-        {'title': "Акции", 'url_name': 'sales'},
-        {'title': "Абонементы", 'url_name': 'subscriptions'},
-        {'title': "Личный кабинет", 'url_name': 'login'}
+        #{'title': "Отзывы", 'url_name': 'reviews'},
+        #{'title': "Акции", 'url_name': 'sales'},
+        #{'title': "Абонементы", 'url_name': 'subscriptions'},
+        #{'title': "Личный кабинет", 'url_name': 'login'}
 ]
 menu_admin = [
         {'title': "Посещения", 'content':[{'subtitle': "Посещения по абонементу", 'url_name': 'admin_visit_by_subscription'}, {'subtitle': "Посещения услуг", 'url_name': 'admin_visits'}]},
@@ -28,10 +28,19 @@ menu_admin = [
         {'title': "Отзывы", 'content':[], 'url_name': 'admin_reviews'},
         {'title': "Дополнительно", 'content':[{'subtitle': "Настройка главной", 'url_name': 'admin_manage_main'}, {'subtitle': "Профиль", 'url_name': 'admin_profile'}]},
 ]
+
+menu_client_profile = [
+        {'title': "Профиль", 'url_name': 'client_services'},
+        {'title': "Расписание", 'url_name': 'client_timetable'},
+        {'title': "Избранное", 'url_name': 'client_favourites'},
+        {'title': "История", 'url_name': 'client_history_subscriptions'},
+        {'title': "Корзина", 'url_name': 'client_cart'}
+]
 class Home(ListView):
     model = Service
     template_name = 'fitness/index.html'
     context_object_name = 'service'
+    queryset = Service.objects.filter(parent=None)
 
     def get_context_data(self, *, object_list=None, **kwargs):
 
@@ -79,10 +88,118 @@ class Halls(ListView):
     template_name = 'fitness/halls.html'
     context_object_name = 'service'
 
+
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['menu'] = menu
         context['title'] = 'Залы'
+
+        return context
+
+
+class ClientServices(ListView):
+    model = Subscription
+    template_name = 'fitness/client_profile/profile.html'
+    context_object_name = 'services'
+
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['menu'] = menu_client_profile
+        context['title'] = 'Доступные услуги'
+
+        return context
+
+class ClientLogin(ListView):
+    model = Client
+    template_name = 'fitness/client_profile/login.html'
+    context_object_name = 'clients'
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['menu'] = menu_client_profile
+        context['title'] = 'Вход в личный кабинет'
+
+        return context
+
+
+class ClientCart(ListView):
+    model = Client
+    template_name = 'fitness/client_profile/cart.html'
+    context_object_name = 'clients'
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['menu'] = menu_client_profile
+        context['title'] = 'Корзина'
+
+        return context
+
+class ClientFavourites(ListView):
+    model = Client
+    template_name = 'fitness/client_profile/favourites.html'
+    context_object_name = 'clients'
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['menu'] = menu_client_profile
+        context['title'] = 'Избранное'
+
+        return context
+
+
+class ClientHistorySubscriptions(ListView):
+    model = Client
+    template_name = 'fitness/client_profile/history_subscriptions.html'
+    context_object_name = 'clients'
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['menu'] = menu_client_profile
+        context['title'] = 'История абонементов'
+
+        return context
+
+
+class ClientHistoryVisits(ListView):
+    model = Client
+    template_name = 'fitness/client_profile/history_visits.html'
+    context_object_name = 'clients'
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['menu'] = menu_client_profile
+        context['title'] = 'История визитов'
+
+        return context
+
+class ClientPersonalData(ListView):
+    model = Client
+    template_name = 'fitness/client_profile/personal_data.html'
+    context_object_name = 'clients'
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['menu'] = menu_client_profile
+        context['title'] = 'Личная информация'
+
+        return context
+
+
+class ClientTimetable(ListView):
+    model = Client
+    template_name = 'fitness/client_profile/timetable.html'
+    context_object_name = 'clients'
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['menu'] = menu_client_profile
+        context['title'] = 'Расписание'
+        return context
+
+
+class RegisterUser(CreateView):
+    #form_class = UserCreateForm
+    template_name = 'fitness/client_profile/register.html'
+    success_url = reverse_lazy('login')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['menu'] = menu
+        context['title'] = 'Регистрация'
         return context
 
 

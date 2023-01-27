@@ -8,7 +8,7 @@
                 <div class="row px-3 ">
                     <ol class="breadcrumb  col-xl-6  col-sm-11  px-3 px-sm-2 my-auto">
                         <li class="breadcrumb-item">Кабинет администратора</li>
-                        <li class="breadcrumb-item"><a class=" text-decoration-none" href="admin_halls.html">Залы</a></li>
+                        <li class="breadcrumb-item"><a class=" text-decoration-none" href="{% url 'admin_halls' %}">Залы</a></li>
                         <li class="breadcrumb-item">{{hall.name}}</li>
                     </ol>
                     <a class = " text-end col-xl-6  col-sm-1 " href="{% url 'hall_edit'  pk=hall.pk %}">

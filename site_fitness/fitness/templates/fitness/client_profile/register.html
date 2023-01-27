@@ -1,0 +1,23 @@
+{% extends 'fitness/client_profile/base.html' %}
+{% block content %}
+<div class="form">
+<form method="POST">
+     {% csrf_token %}
+    <div class="form__title">Регистрация</div>
+    <div class="form__login">
+        {{form.username}}
+    </div>
+    <div class="form__pass">
+        {{form.password1}}
+    </div>
+    <div class="form__pass">
+        {{form.password2}}
+    </div>
+
+
+    <button class="form__button button" type="submit">Регистрация</button>>
+</form>
+ </div>
+
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'fitness/client_profile/base.html' %}
+{% load static %}
+{% block header %}
+
+    <div class="section_profile">
+
+        <div class="header__burger">
+            <span></span>
+        </div>
+    </div>
+
+{% endblock %}
+{% block content %}
+    <div class="form">
+        <div class="form__title">Войти в личный кабинет</div>
+        <div class="form__login">
+            <input class="form__phone phone" placeholder="+7(___)___-__-__" type="tel" name="form_phone" value="" size="20">
+        </div>
+        <div class="form__pass">
+            <input class="form__phone phone" placeholder="Пароль" type="password" name="form_phone" value="" size="20">
+        </div>
+        <button class="form__button button">Войти</button>
+        <div class="form__bottom">
+            <a class="form__forgot_pass" href="#">Забыли пароль?</a>
+            <a class="form__register" href="{% url 'register' %}">Зарегистрироваться</a>
+        </div>
+
+
+    </div>
+{% endblock %}
