@@ -269,13 +269,7 @@ class AdminClients(ListView):
         order = self.request.GET.get('orderby', 'give-default-value')
         return Client.objects.all().order_by(order_by)
 
-        #filter_by = self.request.GET.get('filter_by', '')
-        #return Client.objects.all().order_by(order_by)
-    #def get_ordering(self):
-        #ordering = self.request.GET.get('ordering', 'id')
-       # # validate ordering here
-       # return ordering
-
+     
 
 class AdminVisitBySubscription(ListView):
     pass
