@@ -1,5 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
+
+from .forms import *
 from .models import *
 
 
@@ -68,12 +70,17 @@ class CustomUserAdmin(UserAdmin):
     fieldsets = (
         (None, {
             "fields": (
-                ('phone', 'first_name', 'last_name', 'password', 'groups', 'is_superuser', 'is_staff')
-            ),
+                'phone', 'first_name', 'last_name', 'password', 'groups', 'is_superuser', 'is_staff'
+            )
         }),
     )
 
+class ClientSubscriptionAdmin(admin.ModelAdmin):
+    list_display = ('client',)
+    list_display_links = ('client',)
 
+
+admin.site.register(ClientSubscription, ClientSubscriptionAdmin)
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(Client, ClientAdmin)
 admin.site.register(Service, ServiceAdmin)

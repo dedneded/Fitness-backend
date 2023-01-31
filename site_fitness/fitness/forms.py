@@ -1,9 +1,8 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm
 from django.contrib.auth.models import User
-
 from .models import *
-
+from phonenumber_field.formfields import PhoneNumberField
 
 class FormForCall(forms.ModelForm):
     class Meta:
@@ -201,18 +200,51 @@ class HallCreateForm(forms.ModelForm):
         self.fields['max_clients'].required = False
 
 
-#class UserCreateForm(UserCreationForm):
-   # username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'form__phone phone', 'type': 'tel', 'placeholder':'+7(___)___-__-__', 'size':'20'}))
-    #password1 = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'form__phone phone', 'type':'password', 'placeholder':'Пароль', 'size':'20'}))
-    #password2 = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'form__phone phone', 'type': 'password', 'placeholder': 'Пароль', 'size': '20'}))
-    #mob = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form__phone phone','placeholder': 'Телефон', 'size': '20', 'max_length':'11',}))
-    #class Meta:
-        #model = User
-        #fields = ['username', 'password1', 'password2', 'mob']
-        #widgets = {
-            #'username': forms.TextInput(attrs={'class': 'form__phone phone', 'type': 'tel', 'placeholder':'+7(___)___-__-__', 'size':'20'}),
-            #'password1': forms.TextInput(attrs={'class': 'form__phone phone', 'type':'password', 'placeholder':'Пароль', 'size':'20'}),
-            #'password2': forms.TextInput(attrs={'class': 'form__phone phone', 'type': 'password', 'placeholder': 'Пароль', 'size': '20'}),
-        #}
 
 
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ['phone', 'password']
+        # fields = ['first_name', 'last_name', 'date_of_birth', 'phone', 'password']
+
+
+    widgets = {
+        # 'first_name': forms.TextInput(attrs={'class': 'form-control', 'id': 'first_name'}),
+        # 'last_name': forms.TextInput(attrs={'class': 'form-control', 'id': 'last_name'}),
+        # 'date_of_birth': forms.DateInput(attrs={'class': 'form-control', 'name': 'date_of_birth', 'id': 'date_of_birth',
+        #                            'type': 'date'}),
+        'password': forms.TextInput(attrs={ 'class': 'form-control', 'id': 'passwd'}),
+
+    }
+    phone = PhoneNumberField(region='RU')
+    password2 = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'passwd2', 'type': 'password',
+                                                              'placeholder': 'Пароль'}))
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['phone'].widget.attrs.update({'class': 'form-control'})
+        self.fields['phone'].widget.attrs.update({'type': 'tel'})
+        self.fields['phone'].label = 'Телефон'
+        self.fields['phone'].widget.attrs.update({'placeholder': '+79999999999'})
+
+        self.fields['password'].widget.attrs.update({'placeholder': 'Пароль'})
+
+        # self.fields['first_name'].widget.attrs.update({'placeholder': 'Имя'})
+        # self.fields['last_name'].widget.attrs.update({'placeholder': 'Фамилия'})
+
+
+class LoginUserForm(AuthenticationForm):
+    phone = PhoneNumberField(region='RU')
+    password = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'passwd', 'type': 'password',
+                                      'placeholder': 'Пароль'}))
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['phone'].widget.attrs.update({'class': 'form-control'})
+        self.fields['phone'].widget.attrs.update({'type': 'tel'})
+        self.fields['phone'].label = 'Телефон'
+        self.fields['phone'].widget.attrs.update({'placeholder': '+79999999999'})
+        self.fields['password'].widget.attrs.update({'placeholder': 'Пароль'})

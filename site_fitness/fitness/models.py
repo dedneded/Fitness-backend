@@ -1,4 +1,6 @@
-from django.contrib.auth.models import AbstractUser
+from datetime import datetime
+from datetime import date
+from django.contrib.auth.models import AbstractUser, UserManager
 from django.contrib.postgres.fields import ArrayField
 from phonenumber_field.modelfields import PhoneNumberField
 from django.db import models
@@ -69,7 +71,7 @@ class VisitService(models.Model):
 
 class Employee(models.Model):
     name = models.CharField(max_length=255)
-    date_of_birth = models.DateTimeField()
+    date_of_birth = models.DateField()
     phone = models.CharField(max_length=255)
     mail = models.CharField(max_length=255)
     photo_path = models.ImageField(upload_to="photos/", null=True, blank=True)
@@ -94,7 +96,7 @@ class Client(models.Model):
     name = models.CharField(max_length=255, verbose_name='ФИО')
     phone = models.CharField(max_length=255, verbose_name='Телефон')
     mail = models.CharField(max_length=255, verbose_name='Почта')
-    date_of_birth = models.DateTimeField(verbose_name='Дата рождения')
+    date_of_birth = models.DateField(verbose_name='Дата рождения')
     photo_path = models.ImageField(upload_to="photos/", null=True, verbose_name='Фото', blank=True)
     comment = models.TextField(null=True, blank=True)
     subscriptions = models.ManyToManyField('Subscription', through='ClientSubscription', null=True, blank=True)
@@ -124,8 +126,8 @@ class Application(models.Model):
 class ClientSubscription(models.Model):
     client = models.ForeignKey('Client', on_delete=models.CASCADE)
     subscription = models.ForeignKey('Subscription', on_delete=models.CASCADE)
-    date_start = models.DateTimeField(auto_now_add=True)
-    date_end = models.DateTimeField()
+    date_start = models.DateField(auto_now_add=True)
+    date_end = models.DateField()
     group = models.ForeignKey('Group', on_delete=models.CASCADE, null=True, blank=True)
 
 
@@ -179,8 +181,8 @@ class Discount(models.Model):
     is_fixed = models.BooleanField()
     discount_amount_absolute = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     discount_amount_percent = models.IntegerField(null=True, blank=True)
-    date_start = models.DateTimeField(null=True, blank=True)
-    date_end = models.DateTimeField(null=True, blank=True)
+    date_start = models.DateField(null=True, blank=True)
+    date_end = models.DateField(null=True, blank=True)
 
 
 class DiscountService(models.Model):
@@ -223,8 +225,8 @@ class GroupTimetable(models.Model):
 
 class CustomUser(AbstractUser):
     username = None
-    phone = PhoneNumberField(null=False, blank=False, unique=True, region='RU', verbose_name='Номер телефона')
-    date_of_birth = models.DateField(verbose_name='Дата рождения')
+    phone = PhoneNumberField(null=False, blank=False, unique=True, region='RU', verbose_name='Номер телефона', default='unknown')
+    date_of_birth = models.DateField(verbose_name='Дата рождения', null=False, blank=False, default=date.today)
     USERNAME_FIELD = 'phone'
     REQUIRED_FIELDS = []
     objects = CustomUserManager()

@@ -4,11 +4,11 @@ from django.http import HttpResponse, HttpResponseNotFound, Http404, HttpRespons
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.urls import reverse, reverse_lazy
-
+from django.contrib.auth.views import LoginView
 from .forms import *
 from .models import *
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
-from .utils import *
+
 
 menu = [{'title': "Главная", 'url_name': 'home'},
         {'title': "Залы", 'url_name': 'halls'},
@@ -98,10 +98,9 @@ class Halls(ListView):
 
 
 class ClientServices(ListView):
-    model = Subscription
+    model = ClientSubscription
     template_name = 'fitness/client_profile/profile.html'
-    context_object_name = 'services'
-
+    context_object_name = 'subscriptions'
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -110,16 +109,16 @@ class ClientServices(ListView):
 
         return context
 
-class ClientLogin(ListView):
-    model = Client
-    template_name = 'fitness/client_profile/login.html'
-    context_object_name = 'clients'
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['menu'] = menu_client_profile
-        context['title'] = 'Вход в личный кабинет'
-
-        return context
+# class ClientLogin(ListView):
+#     model = Client
+#     template_name = 'fitness/client_profile/login.html'
+#     context_object_name = 'clients'
+#     def get_context_data(self, *, object_list=None, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['menu'] = menu_client_profile
+#         context['title'] = 'Вход в личный кабинет'
+#
+#         return context
 
 
 class ClientCart(ListView):
@@ -192,15 +191,39 @@ class ClientTimetable(ListView):
 
 
 class RegisterUser(CreateView):
-    #form_class = UserCreateForm
+    form_class = UserForm
     template_name = 'fitness/client_profile/register.html'
-    success_url = reverse_lazy('login')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['menu'] = menu
         context['title'] = 'Регистрация'
+        form = UserForm(self.request.POST)
+
+
         return context
+
+
+
+    def form_valid(self, form):
+        password1 = form.cleaned_data.get('password')
+        password2 = form.cleaned_data.get('password2')
+        if password1 == password2:
+            CustomUser.objects.create_user(form.cleaned_data.get('phone'), form.cleaned_data.get('password'))
+        return redirect('login')
+
+
+class LoginUser(LoginView):
+    form_class = LoginUserForm
+    template_name = 'fitness/client_profile/login.html'
+    success_url = 'fitness/client_profile/profile'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['menu'] = menu
+        context['title'] = ' Авторизация'
+        return context
+
 
 
 class AdminClients(ListView):
